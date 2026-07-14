@@ -140,7 +140,7 @@ const io = new IntersectionObserver((entries) => {
     if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
   });
 }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+document.querySelectorAll(".reveal, .stagger").forEach((el) => io.observe(el));
 
 /* ---- Background: pure black at the top, prism fades in as you scroll ---- */
 (function bgScroll() {
@@ -167,6 +167,7 @@ function animateCount(el) {
     const eased = 1 - Math.pow(1 - p, 3);
     el.textContent = prefix + Math.round(target * eased) + suffix;
     if (p < 1) requestAnimationFrame(tick);
+    else el.classList.add("counted");
   }
   requestAnimationFrame(tick);
 }
