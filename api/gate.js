@@ -14,7 +14,7 @@ export default function handler(req, res) {
     return res.status(405).json({ ok: false, error: 'method' });
   }
 
-  const secret = process.env.gate_pw;
+  const secret = (process.env.gate_pw || process.env.GATE_PW || '').trim();
   // No password configured → site is open; nothing to gate.
   if (!secret) return res.status(200).json({ ok: true, open: true });
 

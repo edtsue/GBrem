@@ -30,7 +30,7 @@ async function tokenFor(secret) {
 }
 
 export default async function middleware(request) {
-  const secret = process.env.gate_pw;
+  const secret = (process.env.gate_pw || process.env.GATE_PW || '').trim();
   if (!secret) return next(); // no password configured → don't lock anyone out
 
   const cookie = readCookie(request, COOKIE);
