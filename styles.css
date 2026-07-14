@@ -59,7 +59,7 @@ strong{color:#fff;font-weight:600}
 .nav__in{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;
   border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04);backdrop-filter:blur(16px);
   box-shadow:0 10px 40px rgba(0,0,0,.3)}
-.brand{display:flex;align-items:center;gap:11px;font-family:Manrope;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.brand{display:flex;align-items:center;gap:11px;font-family:Manrope;font-weight:800;font-size:18px;letter-spacing:-.02em;white-space:nowrap}
 .gmark{width:26px;height:26px;flex:none;border-radius:50%;background:conic-gradient(from 210deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#4285F4);display:grid;place-items:center}
 .gmark::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--bg)}
 .nav__links{display:flex;gap:28px;align-items:center;font-size:14.5px;color:var(--ink2);font-weight:500}
