@@ -6,8 +6,8 @@
    NOTE: each deck must be shared "Anyone with the link → Viewer" in Google
    Slides, or the embed shows a Google sign-in wall for viewers. Rename freely. */
 const DECKS = [
-  { label: "Presentation One", id: "1TCCxYOP9qCrfejd5EKVk_31X2739PO-n" },
-  { label: "Presentation Two", id: "1-C-ai2sYnoFIYeLc_V5bytikwFm8JA7bB60juoTF0-k" },
+  { label: "REMBRAND CREDS", id: "1TCCxYOP9qCrfejd5EKVk_31X2739PO-n" },
+  { label: "GOOGLEBOOK RFP", id: "1-C-ai2sYnoFIYeLc_V5bytikwFm8JA7bB60juoTF0-k" },
 ];
 const embedUrl = (id) => `https://docs.google.com/presentation/d/${id}/embed?start=false&loop=false&delayms=3000`;
 const editUrl = (id) => `https://docs.google.com/presentation/d/${id}/edit`;
