@@ -65,7 +65,7 @@ document.addEventListener("keydown", (e) => {
   if (!l1 || !l2) return;
   const CARET = '<span class="caret"></span>';
   if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) {
-    l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES"; return;
+    l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES."; return;
   }
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   async function typeInto(el, text, speed) {
@@ -79,7 +79,7 @@ document.addEventListener("keydown", (e) => {
     await typeInto(l1, "AS SEEN", 90);   // type line 1
     l1.innerHTML = "AS SEEN";            // drop caret from line 1
     await wait(550);                      // ...beat...
-    await typeInto(l2, "IN SCENES", 90); // type line 2 (caret keeps blinking at end)
+    await typeInto(l2, "IN SCENES.", 90); // type line 2 (caret keeps blinking at end)
   })();
 })();
 
@@ -90,6 +90,20 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+/* ---- Background: pure black at the top, prism fades in as you scroll ---- */
+(function bgScroll() {
+  const bd = document.getElementById("backdrop");
+  if (!bd) return;
+  let raf = 0;
+  function update() {
+    raf = 0;
+    const p = Math.min(1, window.scrollY / (window.innerHeight * 0.85));
+    bd.style.opacity = p.toFixed(3);
+  }
+  window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
+  update();
+})();
 
 /* ---- Stat count-up ---- */
 function animateCount(el) {
