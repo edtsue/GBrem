@@ -90,7 +90,7 @@ strong{color:#fff;font-weight:600}
 .caret{display:inline-block;width:.06em;height:.82em;margin-left:.05em;background:#c4b5fd;transform:translateY(.06em);animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.caret{display:none}}
-.hero__tagline{margin:22px auto 0;font-family:Manrope;font-weight:700;font-size:clamp(16px,2.1vw,21px);letter-spacing:.01em;color:var(--ink);max-width:24ch}
+.hero__tagline{margin:22px auto 0;font-family:Manrope;font-weight:700;font-size:clamp(16px,2.1vw,22px);letter-spacing:.01em;color:var(--ink);max-width:42ch;text-wrap:balance}
 /* cascade-in after the title finishes typing */
 .hfade{opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
 .hfade.show{opacity:1;transform:none}
@@ -98,6 +98,19 @@ strong{color:#fff;font-weight:600}
 .hero__lede{max-width:60ch;margin:20px auto 0;font-size:18.5px;line-height:1.6;color:var(--ink2)}
 .hero__cta{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
 .hero__decks{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+
+/* ---- Glowbar (the Googlebook lid light) — signature motif ---- */
+.glowbar{position:relative;width:min(440px,74vw);height:9px;margin:40px auto 0;border-radius:999px;
+  background:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);
+  background-size:200% 100%;animation:glowflow 6s linear infinite;
+  box-shadow:0 0 22px rgba(139,92,246,.6),0 0 60px rgba(66,133,244,.35)}
+.glowbar::after{content:"";position:absolute;left:-8%;right:-8%;top:50%;height:46px;transform:translateY(-50%);border-radius:999px;z-index:-1;
+  background:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);background-size:200% 100%;
+  filter:blur(30px);opacity:.6;animation:glowflow 6s linear infinite}
+@keyframes glowflow{to{background-position:200% 0}}
+.glowbar--full{width:100%;height:5px;margin:0}
+.glowbar--mini{width:100%;height:7px;margin:14px 0 0}
+@media(prefers-reduced-motion:reduce){.glowbar,.glowbar::after{animation:none}}
 
 /* ---- deck buttons ---- */
 .deck-btn{display:flex;align-items:center;gap:13px;text-align:left;border-radius:14px;padding:12px 18px;cursor:pointer;transition:transform .15s,filter .15s;min-width:220px;
@@ -146,6 +159,28 @@ strong{color:#fff;font-weight:600}
 .feature b{font-family:Manrope;font-weight:700;font-size:16px;color:#fff;display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .feature b::before{content:"";width:9px;height:9px;border-radius:3px;background:conic-gradient(from 0deg,#4285F4,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);flex:none}
 .feature p{color:var(--ink2);font-size:14px;line-height:1.55}
+
+/* clickable "Googlebook" word */
+.gb-link{font:inherit;color:inherit;background:transparent;border:0;padding:0;margin:0;cursor:pointer;display:inline;
+  background-image:linear-gradient(90deg,#8ab4ff,#c4b5fd);background-repeat:no-repeat;background-position:0 100%;background-size:100% 2px;
+  transition:color .2s,background-size .2s}
+.gb-link:hover,.gb-link:focus-visible{color:#c4b5fd;background-size:100% 100%;-webkit-background-clip:border-box;outline:none}
+.product__cue{margin-top:40px;color:var(--ink2);font-size:15px}
+
+/* streamer logo wall */
+.streamers{margin-top:52px;text-align:center}
+.streamers__k{font-family:Manrope;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:22px}
+.streamers__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:20px 40px}
+.slogo{font-weight:800;font-size:22px;color:var(--ink2);opacity:.72;letter-spacing:-.01em;transition:opacity .2s,color .2s;filter:grayscale(1)}
+.slogo:hover{opacity:1;color:#fff;filter:none}
+.slogo--para{color:#0064ff}
+.slogo--hulu{color:#1ce783;text-transform:lowercase;font-weight:800}
+.slogo--nflx{color:#e50914;letter-spacing:.02em}
+.slogo--max{color:#7b5cff;text-transform:lowercase}
+.slogo--dis{color:#3fa9f5;font-family:Manrope}
+.slogo--peac{color:#fff;text-transform:lowercase}
+.slogo--prime{color:#1399ff;text-transform:lowercase}
+.slogo--appl{color:#e6e6e6}
 
 /* in scene, not in use callout */
 .inscene{margin-top:34px;padding:26px 28px;border-radius:20px;border:1px solid transparent;
@@ -269,7 +304,13 @@ strong{color:#fff;font-weight:600}
 
 /* footer */
 .foot{position:relative;z-index:2;padding:40px 0 60px}
-.foot__rule{height:1px;background:var(--iris);opacity:.5;margin-bottom:30px}
+.foot .glowbar--full{margin-bottom:34px}
+.foot__pilot{max-width:var(--maxw);margin:0 auto 30px;padding:0 32px;display:flex;gap:16px;flex-wrap:wrap}
+.foot__pilot-item{flex:1;min-width:240px;padding:22px 26px;border-radius:18px;border:1px solid transparent;
+  background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--prismborder) border-box;backdrop-filter:blur(10px)}
+.foot__pilot-k{display:block;font-family:Manrope;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);margin-bottom:8px}
+.foot__pilot-item b{font-family:Manrope;font-weight:800;font-size:clamp(19px,2.3vw,25px);letter-spacing:-.01em;line-height:1.15;display:block;
+  background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
 .foot__in{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .foot__note{color:var(--ink3);font-size:13.5px}
 .foot__brief{font-family:Manrope;font-weight:700;font-size:14px;color:#fff;border:1px solid var(--line2);padding:9px 18px;border-radius:999px;background:rgba(255,255,255,.05);cursor:pointer}
@@ -288,6 +329,40 @@ strong{color:#fff;font-weight:600}
 .brief__list li{color:var(--ink2);font-size:14.5px;line-height:1.55}
 .brief__list b{color:#fff}
 .brief__decks{display:grid;gap:12px}
+
+/* audience interests */
+.aud-cta{margin-top:30px}
+.aud-eyebrow{font-family:Manrope;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+.aud-title{font-family:Manrope;font-weight:800;font-size:clamp(20px,2.6vw,28px);letter-spacing:-.02em;color:#fff;max-width:28ch;margin-bottom:26px}
+.aud-list{display:grid;gap:11px}
+.aud-row{display:grid;grid-template-columns:160px 1fr 56px 54px;align-items:center;gap:16px}
+.aud-name{font-size:15px;color:var(--ink)}
+.aud-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden}
+.aud-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#4285F4,#8b5cf6,#ec4899)}
+.aud-pct{font-family:Manrope;font-weight:700;font-size:14px;color:var(--ink2);text-align:right}
+.aud-idx{font-family:Manrope;font-weight:800;font-size:15px;color:var(--ink2);text-align:right}
+.aud-idx em{font-style:normal;font-size:11px;opacity:.65;margin-left:1px}
+.aud-idx--hi{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
+.aud-foot{margin-top:22px;font-size:12.5px;color:var(--ink3)}
+@media(max-width:540px){
+  .aud-row{grid-template-columns:1fr 52px 48px;gap:12px}
+  .aud-bar{display:none}
+  .aud-name{font-size:14px}
+}
+
+/* product modal */
+.pmodal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:clamp(12px,3vw,40px)}
+.pmodal[hidden]{display:none}
+.pmodal__backdrop{position:absolute;inset:0;background:rgba(6,6,10,.8);backdrop-filter:blur(8px);animation:fade .2s ease}
+.pmodal__panel{position:relative;width:min(980px,100%);max-height:92vh;overflow-y:auto;padding:38px 36px;border-radius:22px;
+  background:linear-gradient(180deg,#0f1017,#0b0c11);border:1px solid transparent;
+  background-clip:padding-box;box-shadow:0 30px 90px rgba(0,0,0,.55);animation:pop .24s cubic-bezier(.2,.7,.3,1)}
+.pmodal__panel::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;pointer-events:none;
+  background:linear-gradient(130deg,rgba(138,180,255,.55),rgba(236,72,153,.4),rgba(52,168,83,.3));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.pmodal__close{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.06);color:#fff;font-size:14px;cursor:pointer;z-index:2}
+.pmodal__close:hover{background:rgba(255,255,255,.14)}
+.pmodal .product__head{margin-top:0}
 
 /* deck modal */
 .deck-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:clamp(12px,3vw,40px)}
