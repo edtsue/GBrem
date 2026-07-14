@@ -13,22 +13,24 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
+body{font-family:Inter,system-ui,sans-serif;background:#000;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.5}
 a{color:inherit;text-decoration:none}
 strong{color:#fff;font-weight:600}
 ::selection{background:rgba(138,180,255,.35);color:#fff}
 
-/* ---- prism backdrop ---- */
-.field{position:fixed;inset:0;z-index:0;pointer-events:none;
+/* ---- prism backdrop (opacity driven by scroll: black → prism) ---- */
+.backdrop{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;will-change:opacity}
+.bd-base{position:absolute;inset:0;background:var(--bg)}
+.field{position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
    radial-gradient(60% 40% at 80% 8%,rgba(66,133,244,.22),transparent 60%),
    radial-gradient(52% 42% at 10% 22%,rgba(236,72,153,.16),transparent 60%),
    radial-gradient(70% 55% at 50% 108%,rgba(52,168,83,.14),transparent 60%)}
-.rings{position:fixed;top:-34%;left:50%;transform:translateX(-50%);width:1050px;height:1050px;z-index:0;pointer-events:none;
+.rings{position:absolute;top:-34%;left:50%;transform:translateX(-50%);width:1050px;height:1050px;z-index:0;pointer-events:none;
   background:conic-gradient(from 0deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);
   border-radius:50%;filter:blur(130px);opacity:.2;animation:spin 46s linear infinite}
 @keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
-.pgrid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+.pgrid{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
   background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
   background-size:62px 62px;-webkit-mask-image:radial-gradient(75% 65% at 50% 26%,#000,transparent 82%);mask-image:radial-gradient(75% 65% at 50% 26%,#000,transparent 82%)}
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -68,12 +70,18 @@ strong{color:#fff;font-weight:600}
 .nav__brief:hover{filter:brightness(1.08)}
 
 /* ---- hero ---- */
-.hero{position:relative;z-index:2;padding:110px 0 90px;text-align:center}
+.hero{position:relative;z-index:2;min-height:calc(100svh - 72px);display:flex;flex-direction:column;justify-content:center;text-align:center;padding:48px 0}
+.scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--ink3);font-family:Manrope;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite}
+.scrollcue i{font-style:normal;font-size:16px}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+@media(prefers-reduced-motion:reduce){.scrollcue{animation:none}}
 .kicker{display:inline-flex;align-items:center;gap:10px;font-family:Manrope;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:28px;border:1px solid var(--line);padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.03);backdrop-filter:blur(8px)}
 .dot{width:12px;height:12px;border-radius:4px;background:conic-gradient(from 0deg,#4285F4,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);animation:pulse 3s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:rotate(0)}50%{opacity:.6;transform:rotate(180deg)}}
 .hero__h1{font-family:Manrope;font-weight:800;font-size:clamp(46px,7.6vw,96px);line-height:1.0;letter-spacing:-.04em;margin:0 auto;max-width:13ch;
   background:linear-gradient(180deg,#ffffff,#c6cad6);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* concept title uses a Courier screenplay font, sized big */
+.hero__h1.concept{font-family:"Courier Prime",ui-monospace,monospace;font-weight:700;font-size:clamp(44px,9.2vw,132px);letter-spacing:0;line-height:1.02}
 .hero__h1 .grad{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* concept title — "As Seen On TV" title-card energy, typed out by JS */
 .concept{display:flex;flex-direction:column;gap:.02em;text-transform:uppercase;letter-spacing:-.01em;min-height:2.05em}
