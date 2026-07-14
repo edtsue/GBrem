@@ -102,15 +102,25 @@ strong{color:#fff;font-weight:600}
 /* ---- Glowbar (the Googlebook lid light) — signature motif ---- */
 .glowbar{position:relative;width:min(440px,74vw);height:9px;margin:40px auto 0;border-radius:999px;
   background:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);
-  background-size:200% 100%;animation:glowflow 6s linear infinite;
+  background-size:200% 100%;
+  animation:glowflow 5s linear infinite,glowbreathe 3.4s ease-in-out infinite;
   box-shadow:0 0 22px rgba(139,92,246,.6),0 0 60px rgba(66,133,244,.35)}
+/* traveling gleam — the LED "waking up" */
+.glowbar::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);
+  background-size:38% 100%;background-repeat:no-repeat;background-position:-40% 0;
+  mix-blend-mode:overlay;animation:gleam 2.8s ease-in-out infinite}
+/* breathing bloom beneath */
 .glowbar::after{content:"";position:absolute;left:-8%;right:-8%;top:50%;height:46px;transform:translateY(-50%);border-radius:999px;z-index:-1;
   background:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);background-size:200% 100%;
-  filter:blur(30px);opacity:.6;animation:glowflow 6s linear infinite}
+  filter:blur(30px);animation:glowflow 5s linear infinite,bloombreathe 3.4s ease-in-out infinite}
 @keyframes glowflow{to{background-position:200% 0}}
+@keyframes glowbreathe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.28)}}
+@keyframes bloombreathe{0%,100%{opacity:.42}50%{opacity:.82}}
+@keyframes gleam{0%{background-position:-40% 0}55%,100%{background-position:140% 0}}
 .glowbar--full{width:100%;height:5px;margin:0}
 .glowbar--mini{width:100%;height:7px;margin:14px 0 0}
-@media(prefers-reduced-motion:reduce){.glowbar,.glowbar::after{animation:none}}
+@media(prefers-reduced-motion:reduce){.glowbar,.glowbar::before,.glowbar::after{animation:none}}
 
 /* ---- deck buttons ---- */
 .deck-btn{display:flex;align-items:center;gap:13px;text-align:left;border-radius:14px;padding:12px 18px;cursor:pointer;transition:transform .15s,filter .15s;min-width:220px;

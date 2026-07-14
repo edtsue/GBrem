@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>gbseen — Enter</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Manrope:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,sans-serif;background:#000;color:#eef0f4;min-height:100svh;display:grid;place-items:center;padding:24px;overflow:hidden}
+.rings{position:fixed;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;z-index:0;pointer-events:none;
+  background:conic-gradient(from 0deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);border-radius:50%;filter:blur(140px);opacity:.22;animation:spin 46s linear infinite}
+@keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
+.card{position:relative;z-index:2;width:min(420px,100%);padding:40px 34px;border-radius:24px;text-align:center;
+  background:linear-gradient(180deg,rgba(20,22,28,.7),rgba(11,12,17,.7));backdrop-filter:blur(16px);
+  border:1px solid transparent;background-clip:padding-box}
+.card::before{content:"";position:absolute;inset:0;border-radius:24px;padding:1px;pointer-events:none;
+  background:linear-gradient(130deg,rgba(138,180,255,.55),rgba(236,72,153,.4),rgba(52,168,83,.3));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.tv{font-size:34px}
+.title{font-family:"Courier Prime",monospace;font-weight:700;letter-spacing:.02em;font-size:22px;margin-top:10px;text-transform:uppercase}
+.title .g{background:linear-gradient(100deg,#8ab4ff,#22d3ee 40%,#c4b5fd 70%,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#8b90a0;font-size:13.5px;margin-top:8px}
+.glowbar{width:180px;height:7px;margin:22px auto 4px;border-radius:999px;
+  background:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);background-size:200% 100%;
+  animation:flow 5s linear infinite;box-shadow:0 0 18px rgba(139,92,246,.55)}
+@keyframes flow{to{background-position:200% 0}}
+form{margin-top:24px;display:grid;gap:12px}
+input[type=password]{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#fff;font-size:15px;text-align:center}
+input[type=password]:focus{outline:none;border-color:rgba(138,180,255,.7)}
+button{padding:14px 16px;border-radius:12px;border:none;cursor:pointer;font-family:Manrope;font-weight:700;font-size:15px;color:#fff;
+  background:linear-gradient(100deg,#4285F4,#8b5cf6 55%,#ec4899);box-shadow:0 8px 30px rgba(139,92,246,.35)}
+button:disabled{opacity:.6;cursor:default}
+.remember{display:flex;align-items:center;justify-content:center;gap:8px;color:#8b90a0;font-size:13px}
+.err{min-height:18px;color:#ff7a90;font-size:13px;margin-top:4px}
+</style>
+</head>
+<body>
+<div class="rings" aria-hidden="true"></div>
+<div class="card">
+  <div class="tv">📺</div>
+  <div class="title">AS SEEN <span class="g">IN SCENES</span></div>
+  <div class="sub">This pitch is private. Enter the password to continue.</div>
+  <div class="glowbar" aria-hidden="true"></div>
+  <form id="f">
+    <input id="pw" type="password" placeholder="Password" autocomplete="current-password" autofocus />
+    <label class="remember"><input id="remember" type="checkbox" /> Remember me on this device</label>
+    <button id="go" type="submit">Enter</button>
+    <div class="err" id="err"></div>
+  </form>
+</div>
+<script>
+const f = document.getElementById('f'), pw = document.getElementById('pw'),
+      go = document.getElementById('go'), err = document.getElementById('err'),
+      remember = document.getElementById('remember');
+f.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  err.textContent = ''; go.disabled = true; go.textContent = 'Checking…';
+  try {
+    const res = await fetch('/api/gate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw.value, remember: remember.checked }),
+    });
+    if (res.ok) { window.location.replace('/'); return; }
+    err.textContent = 'Incorrect password.';
+  } catch { err.textContent = 'Something went wrong. Try again.'; }
+  go.disabled = false; go.textContent = 'Enter'; pw.select();
+});
+</script>
+</body>
+</html>
