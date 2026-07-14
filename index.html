@@ -41,6 +41,12 @@
 
 <!-- HERO -->
 <main id="top" class="hero">
+  <div class="hero__video" aria-hidden="true">
+    <video id="heroVid" class="hero__video-el" autoplay muted loop playsinline preload="auto" poster="assets/demo-poster.jpg">
+      <source src="assets/demo.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__scrim"></div>
+  </div>
   <div class="hero__in reveal">
     <h1 class="hero__h1 concept" aria-label="As seen in scenes."><span class="concept__l1" id="conceptL1"></span> <span class="concept__l2 grad shimmer" id="conceptL2"></span></h1>
     <p class="hero__tagline hfade">Google's first AI laptop deserves Google's first AI product placement.</p>
@@ -76,19 +82,6 @@
       The future of tech doesn't interrupt the story. <span class="grad">It joins it.</span>
       <cite>A new AI product deserves a new AI product placement.</cite>
     </blockquote>
-
-    <!-- DEMO VIDEO SLOT -->
-    <figure class="demo reveal" id="demoSlot">
-      <div class="demo__frame">
-        <video id="demoVid" class="demo__vid" playsinline controls preload="none" poster="assets/demo-poster.jpg"></video>
-        <div class="demo__empty" id="demoEmpty">
-          <span class="demo__play">▶</span>
-          <p>Rembrand technology reel</p>
-          <small>Drop <code>assets/demo.mp4</code> here — it will play in place.</small>
-        </div>
-      </div>
-      <figcaption>An example scene — a planning moment, exactly where a Googlebook belongs.</figcaption>
-    </figure>
 
     <!-- STATS -->
     <div class="stats reveal">
