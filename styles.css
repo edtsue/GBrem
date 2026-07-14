@@ -90,7 +90,11 @@ strong{color:#fff;font-weight:600}
 .caret{display:inline-block;width:.06em;height:.82em;margin-left:.05em;background:#c4b5fd;transform:translateY(.06em);animation:blink 1s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.caret{display:none}}
-.hero__tagline{margin:20px auto 0;font-family:Manrope;font-weight:700;font-size:clamp(16px,2vw,20px);letter-spacing:.01em;color:var(--ink2)}
+.hero__tagline{margin:22px auto 0;font-family:Manrope;font-weight:700;font-size:clamp(16px,2.1vw,21px);letter-spacing:.01em;color:var(--ink);max-width:24ch}
+/* cascade-in after the title finishes typing */
+.hfade{opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
+.hfade.show{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.hfade{opacity:1;transform:none;transition:none}}
 .hero__lede{max-width:60ch;margin:20px auto 0;font-size:18.5px;line-height:1.6;color:var(--ink2)}
 .hero__cta{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}
 .hero__decks{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap}
