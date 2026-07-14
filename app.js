@@ -64,8 +64,13 @@ document.addEventListener("keydown", (e) => {
   const l2 = document.getElementById("conceptL2");
   if (!l1 || !l2) return;
   const CARET = '<span class="caret"></span>';
+  const taglineEl = document.querySelector(".hero__tagline");
+  const ledeEl = document.querySelector(".hero__lede");
   if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) {
-    l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES."; return;
+    l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES.";
+    taglineEl && taglineEl.classList.add("show");
+    ledeEl && ledeEl.classList.add("show");
+    return;
   }
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
   async function typeInto(el, text, speed) {
@@ -80,6 +85,10 @@ document.addEventListener("keydown", (e) => {
     l1.innerHTML = "AS SEEN";            // drop caret from line 1
     await wait(550);                      // ...beat...
     await typeInto(l2, "IN SCENES.", 90); // type line 2 (caret keeps blinking at end)
+    await wait(450);                       // ...a beat after the title lands...
+    taglineEl && taglineEl.classList.add("show");  // tagline fades in dramatically
+    await wait(350);
+    ledeEl && ledeEl.classList.add("show");        // then the lede
   })();
 })();
 
