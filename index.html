@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gbseen — As Seen In Scenes</title>
 <meta name="description" content="AI-native product placement — Rembrand drops Google's new Googlebook into premium scenes at the speed of thought." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>📺</text></svg>" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="alternate icon" href="assets/favicon.svg" />
 <meta property="og:title" content="Googlebook × Rembrand — Placed at the speed of thought" />
 <meta property="og:description" content="AI-native product placement that drops Google's new Googlebook into the exact scenes where the speed of thought is happening — at scale, without touching production." />
 <meta property="og:type" content="website" />
@@ -28,7 +29,7 @@
 <!-- NAV -->
 <header class="nav">
   <div class="nav__in">
-    <a class="brand" href="#top"><span class="gmark"></span>Googlebook × MFG × Rembrand</a>
+    <a class="brand" href="#top" data-no-gb><span class="gmark"></span>Googlebook × MFG × Rembrand</a>
     <nav class="nav__links">
       <a href="#opportunity">Opportunity</a>
       <a href="#how">How it works</a>
@@ -44,6 +45,7 @@
     <h1 class="hero__h1 concept" aria-label="As seen in scenes."><span class="concept__l1" id="conceptL1"></span> <span class="concept__l2 grad shimmer" id="conceptL2"></span></h1>
     <p class="hero__tagline hfade">Google's first AI laptop deserves Google's first AI product placement.</p>
     <p class="hero__lede hfade">In a world first, Rembrand's in-content AI casts Google's <strong>first AI laptop</strong> — the <strong>Googlebook</strong> — into the exact scenes where creativity and quick thinking happen. Natively, at scale, without ever touching production.</p>
+    <div class="glowbar hfade" aria-hidden="true"></div>
   </div>
   <div class="scrollcue" aria-hidden="true"><span>Scroll</span><i>↓</i></div>
 </main>
@@ -55,18 +57,7 @@
     <h2 class="sec__h2 reveal">Putting Googlebook in scenes where the <span class="grad">'speed of thought'</span> is happening. And consumers are watching.</h2>
     <p class="sec__lede reveal">The Googlebook belongs inside the scenes where people think fast and create — the writers' room, the late-night breakthrough, the plan coming together. Not in the ad break beside them. <em>In</em> them.</p>
 
-    <div class="product__head reveal">
-      <h3>Meet the Googlebook — Google's first AI laptop.</h3>
-      <span class="product__launch">Launching early October</span>
-    </div>
-    <div class="features reveal">
-      <div class="feature"><b>Magic Pointer</b><p>Built with DeepMind — wiggle the cursor and Gemini comes alive, offering contextual suggestions for whatever you point at. Ask, compare and combine.</p></div>
-      <div class="feature"><b>Create your Widget</b><p>Prompt a custom dashboard; Gemini pulls from the web, Gmail and Calendar to assemble it — flights, hotels and a trip countdown in one place.</p></div>
-      <div class="feature"><b>Magic Cue</b><p>Ported from Pixel — surfaces the next action from the context of your messages and email, right on the laptop.</p></div>
-      <div class="feature"><b>Phone app streaming</b><p>Stream any Android app from a nearby phone into a floating window — order food or finish a Duolingo lesson without leaving your screen.</p></div>
-      <div class="feature"><b>Quick Access</b><p>View, search and insert your phone's files straight from the Googlebook file browser — no transfers.</p></div>
-      <div class="feature"><b>Glowbar</b><p>A rectangular LED lid light — functional and beautiful — that identifies a Googlebook at a glance.</p></div>
-    </div>
+    <p class="product__cue reveal">Tap <button class="gb-link" type="button">Googlebook</button> anywhere on this page to meet the laptop.</p>
 
     <div class="split">
       <div class="card card--problem reveal">
@@ -96,7 +87,7 @@
           <small>Drop <code>assets/demo.mp4</code> here — it will play in place.</small>
         </div>
       </div>
-      <figcaption>How Rembrand's in-content AI places a product into a finished scene.</figcaption>
+      <figcaption>An example scene — a planning moment, exactly where a Googlebook belongs.</figcaption>
     </figure>
 
     <!-- STATS -->
@@ -123,7 +114,7 @@
     <p class="sec__lede reveal">Take a premium, current series — say <strong>All American</strong>. The Googlebook only appears where thinking is happening: the study grind, the plan that comes together, the moment of quick thinking — never idle background. Placed by AI, indistinguishable from the shot.</p>
 
     <!-- MOCKUP BEFORE/AFTER -->
-    <figure class="mock reveal">
+    <figure class="mock reveal" data-no-gb>
       <div class="mock__frame" id="mockFrame">
         <div class="mock__before"><span>SCENE — as shot</span></div>
         <div class="mock__after" id="mockAfter"><span>SCENE — Googlebook placed</span></div>
@@ -137,6 +128,22 @@
     <div class="inscene reveal">
       <div class="inscene__k">In scene, not in use</div>
       <p>Rembrand places the Googlebook <em>in the moment</em> — on the desk, in the room — never in an actor's hands. The <strong>Glowbar</strong> lid light does the identifying: audiences clock a Googlebook at a glance, no "as-used" shot required.</p>
+    </div>
+
+    <!-- STREAMER LOGO WALL (swap in real logo SVGs at assets/logos/ later) -->
+    <div class="streamers reveal">
+      <div class="streamers__k">Across the premium streamers your audience lives on</div>
+      <div class="streamers__row">
+        <span class="slogo slogo--para">Paramount+</span>
+        <span class="slogo slogo--hulu">hulu</span>
+        <span class="slogo slogo--nflx">NETFLIX</span>
+        <span class="slogo slogo--max">max</span>
+        <span class="slogo slogo--dis">Disney+</span>
+        <span class="slogo slogo--peac">peacock</span>
+        <span class="slogo slogo--prime">prime video</span>
+        <span class="slogo slogo--appl">Apple TV+</span>
+      </div>
+      <button class="btn btn-s aud-cta" data-open-audience type="button"><span>See the audience interests</span> ▤</button>
     </div>
   </div>
 </section>
@@ -202,9 +209,13 @@
 
 <!-- FOOTER -->
 <footer class="foot">
-  <div class="foot__rule"></div>
+  <div class="glowbar glowbar--full" aria-hidden="true"></div>
+  <div class="foot__pilot">
+    <div class="foot__pilot-item"><span class="foot__pilot-k">Pilot investment range</span><b>$100K – $200K</b></div>
+    <div class="foot__pilot-item"><span class="foot__pilot-k">Measurement</span><b>Brand Lift Study (BLS) included in the pilot</b></div>
+  </div>
   <div class="foot__in">
-    <span class="brand"><span class="gmark"></span>Googlebook × MFG × Rembrand</span>
+    <span class="brand" data-no-gb><span class="gmark"></span>Googlebook × MFG × Rembrand</span>
     <span class="foot__note">A Google × Rembrand concept · Placed at the speed of thought.</span>
     <button class="foot__brief" id="briefBtn3" type="button">The Brief</button>
   </div>
@@ -228,6 +239,50 @@
       <button class="deck-btn" data-open-deck="1" type="button"><span class="deck-btn__ic">▶</span><span class="deck-btn__tx"><b>GOOGLEBOOK RFP</b><em>Open deck</em></span></button>
     </div>
   </aside>
+</div>
+
+<!-- AUDIENCE INTERESTS MODAL -->
+<div class="pmodal" id="audienceModal" hidden data-no-gb>
+  <div class="pmodal__backdrop" data-close-audience></div>
+  <div class="pmodal__panel" role="dialog" aria-modal="true" aria-label="Audience interests">
+    <button class="pmodal__close" data-close-audience type="button" aria-label="Close">✕</button>
+    <div class="aud-eyebrow">Audience interests</div>
+    <h3 class="aud-title">Top interests center around tech, gaming, business creation and modern culture.</h3>
+    <div class="aud-list">
+      <div class="aud-row"><span class="aud-name">Technology</span><span class="aud-bar"><i style="width:100%"></i></span><span class="aud-pct">52.8%</span><span class="aud-idx">123<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Gaming</span><span class="aud-bar"><i style="width:89.8%"></i></span><span class="aud-pct">47.4%</span><span class="aud-idx aud-idx--hi">142<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Gadgets</span><span class="aud-bar"><i style="width:61.4%"></i></span><span class="aud-pct">32.4%</span><span class="aud-idx">125<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Playing sports</span><span class="aud-bar"><i style="width:58.9%"></i></span><span class="aud-pct">31.1%</span><span class="aud-idx aud-idx--hi">132<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Cars / motoring</span><span class="aud-bar"><i style="width:54.7%"></i></span><span class="aud-pct">28.9%</span><span class="aud-idx">125<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Computers / coding</span><span class="aud-bar"><i style="width:54.5%"></i></span><span class="aud-pct">28.8%</span><span class="aud-idx aud-idx--hi">140<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Urban / modern art</span><span class="aud-bar"><i style="width:48.1%"></i></span><span class="aud-pct">25.4%</span><span class="aud-idx aud-idx--hi">135<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Business</span><span class="aud-bar"><i style="width:46.4%"></i></span><span class="aud-pct">24.5%</span><span class="aud-idx">121<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Entrepreneurship</span><span class="aud-bar"><i style="width:41.5%"></i></span><span class="aud-pct">21.9%</span><span class="aud-idx aud-idx--hi">142<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Foreign languages</span><span class="aud-bar"><i style="width:38.8%"></i></span><span class="aud-pct">20.5%</span><span class="aud-idx">121<em>i</em></span></div>
+      <div class="aud-row"><span class="aud-name">Gambling</span><span class="aud-bar"><i style="width:38.3%"></i></span><span class="aud-pct">20.2%</span><span class="aud-idx aud-idx--hi">134<em>i</em></span></div>
+    </div>
+    <div class="aud-foot">% = share of audience · index (i) vs. general population, 100 = average</div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL (opens on clicking any "Googlebook") -->
+<div class="pmodal" id="productModal" hidden data-no-gb>
+  <div class="pmodal__backdrop" data-close-product></div>
+  <div class="pmodal__panel" role="dialog" aria-modal="true" aria-label="Meet the Googlebook">
+    <button class="pmodal__close" data-close-product type="button" aria-label="Close">✕</button>
+    <div class="product__head">
+      <h3>Meet the Googlebook — Google's first AI laptop.</h3>
+      <span class="product__launch">Launching early October</span>
+    </div>
+    <div class="features">
+      <div class="feature"><b>Magic Pointer</b><p>Built with DeepMind — wiggle the cursor and Gemini comes alive, offering contextual suggestions for whatever you point at. Ask, compare and combine.</p></div>
+      <div class="feature"><b>Create your Widget</b><p>Prompt a custom dashboard; Gemini pulls from the web, Gmail and Calendar to assemble it — flights, hotels and a trip countdown in one place.</p></div>
+      <div class="feature"><b>Magic Cue</b><p>Ported from Pixel — surfaces the next action from the context of your messages and email, right on the laptop.</p></div>
+      <div class="feature"><b>Phone app streaming</b><p>Stream any Android app from a nearby phone into a floating window — order food or finish a Duolingo lesson without leaving your screen.</p></div>
+      <div class="feature"><b>Quick Access</b><p>View, search and insert your phone's files straight from the Googlebook file browser — no transfers.</p></div>
+      <div class="feature"><b>Glowbar</b><p>A rectangular LED lid light — functional and beautiful — that identifies a Googlebook at a glance.</p><div class="glowbar glowbar--mini" aria-hidden="true"></div></div>
+    </div>
+  </div>
 </div>
 
 <!-- DECK MODAL -->

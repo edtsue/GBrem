@@ -52,9 +52,59 @@ function closeBrief() { briefPanel.hidden = true; document.body.style.overflow =
 document.querySelectorAll("[data-close-brief]").forEach((b) =>
   b.addEventListener("click", closeBrief));
 
+/* ---- Product modal: opens when any "Googlebook" word is clicked ---- */
+const productModal = document.getElementById("productModal");
+function openProduct() { productModal.hidden = false; document.body.style.overflow = "hidden"; }
+function closeProduct() { productModal.hidden = true; document.body.style.overflow = ""; }
+document.querySelectorAll("[data-close-product]").forEach((b) =>
+  b.addEventListener("click", closeProduct));
+
+/* ---- Audience interests modal ---- */
+const audienceModal = document.getElementById("audienceModal");
+function openAudience() { audienceModal.hidden = false; document.body.style.overflow = "hidden"; }
+function closeAudience() { audienceModal.hidden = true; document.body.style.overflow = ""; }
+document.querySelectorAll("[data-open-audience]").forEach((b) => b.addEventListener("click", openAudience));
+document.querySelectorAll("[data-close-audience]").forEach((b) => b.addEventListener("click", closeAudience));
+
+/* Wrap every on-page "Googlebook" in a clickable button (skips [data-no-gb]) */
+(function linkGooglebook() {
+  const skip = (el) => {
+    while (el) {
+      if (el.nodeType === 1 && (el.hasAttribute("data-no-gb") || el.tagName === "SCRIPT" ||
+          el.tagName === "STYLE" || (el.classList && el.classList.contains("gb-link")))) return true;
+      el = el.parentElement;
+    }
+    return false;
+  };
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(n) {
+      if (!n.nodeValue || n.nodeValue.indexOf("Googlebook") === -1) return NodeFilter.FILTER_REJECT;
+      return skip(n.parentElement) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+    },
+  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach((node) => {
+    const frag = document.createDocumentFragment();
+    node.nodeValue.split(/(Googlebook)/g).forEach((part) => {
+      if (part === "Googlebook") {
+        const b = document.createElement("button");
+        b.className = "gb-link"; b.type = "button"; b.textContent = "Googlebook";
+        frag.appendChild(b);
+      } else if (part) {
+        frag.appendChild(document.createTextNode(part));
+      }
+    });
+    node.parentNode.replaceChild(frag, node);
+  });
+  document.querySelectorAll(".gb-link").forEach((b) => b.addEventListener("click", openProduct));
+})();
+
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   if (!deckModal.hidden) closeDeck();
+  else if (!productModal.hidden) closeProduct();
+  else if (!audienceModal.hidden) closeAudience();
   else if (!briefPanel.hidden) closeBrief();
 });
 
@@ -70,6 +120,7 @@ document.addEventListener("keydown", (e) => {
     l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES.";
     taglineEl && taglineEl.classList.add("show");
     ledeEl && ledeEl.classList.add("show");
+    document.querySelector(".hero .glowbar") && document.querySelector(".hero .glowbar").classList.add("show");
     return;
   }
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -89,6 +140,9 @@ document.addEventListener("keydown", (e) => {
     taglineEl && taglineEl.classList.add("show");  // tagline fades in dramatically
     await wait(350);
     ledeEl && ledeEl.classList.add("show");        // then the lede
+    await wait(300);
+    const gb = document.querySelector(".hero .glowbar");
+    gb && gb.classList.add("show");                // then the Glowbar lights up
   })();
 })();
 
