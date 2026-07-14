@@ -231,6 +231,20 @@ strong{color:#fff;font-weight:600}
 .own__list li{padding:12px 18px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:14.5px}
 .own__list li::before{content:"✦  ";color:#c4b5fd}
 
+/* tiers */
+.tiers__intro{margin-top:52px;text-align:center;font-family:Manrope;font-weight:600;font-size:17px;color:var(--ink2)}
+.tiers{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.tier{position:relative;padding:30px 26px;border-radius:22px;border:1px solid var(--line);background:var(--card);backdrop-filter:blur(12px);display:flex;flex-direction:column}
+.tier--gold{border:1px solid transparent;background:linear-gradient(rgba(12,13,18,.86),rgba(12,13,18,.86)) padding-box,linear-gradient(130deg,#4285F4,#8b5cf6,#ec4899) border-box;box-shadow:0 22px 60px rgba(139,92,246,.28)}
+.tier__glow{position:absolute;inset:0;border-radius:22px;background:radial-gradient(70% 100% at 82% 0%,rgba(139,92,246,.28),transparent 60%);pointer-events:none}
+.tier__badge{position:relative;align-self:flex-start;font-family:Manrope;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:linear-gradient(100deg,#8ab4ff,#c4b5fd);color:#0d0e12;margin-bottom:14px}
+.tier__name{position:relative;font-family:Manrope;font-weight:800;font-size:23px;letter-spacing:-.02em;color:#fff}
+.tier--gold .tier__name{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tier__desc{position:relative;color:var(--ink2);font-size:14.5px;line-height:1.55;margin-top:10px}
+.tier__list{position:relative;list-style:none;margin-top:18px;display:grid;gap:9px}
+.tier__list li{position:relative;padding-left:22px;font-size:14px;color:var(--ink)}
+.tier__list li::before{content:"✦";position:absolute;left:0;color:#c4b5fd}
+
 /* footer */
 .foot{position:relative;z-index:2;padding:40px 0 60px}
 .foot__rule{height:1px;background:var(--iris);opacity:.5;margin-bottom:30px}
@@ -276,6 +290,7 @@ strong{color:#fff;font-weight:600}
   .stats{grid-template-columns:repeat(2,1fr)}
   .flow{flex-direction:column}
   .flow__arrow{transform:rotate(90deg)}
+  .tiers{grid-template-columns:1fr}
   .sec__h2{max-width:none}
 }
 @media(max-width:540px){
