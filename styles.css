@@ -132,6 +132,24 @@ strong{color:#fff;font-weight:600}
 .card h3{font-family:Manrope;font-weight:700;font-size:22px;letter-spacing:-.02em;margin-bottom:10px;color:#fff}
 .card p{color:var(--ink2);font-size:15.5px;line-height:1.6}
 
+/* product features */
+.product__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px}
+.product__head h3{font-family:Manrope;font-weight:800;font-size:clamp(22px,3vw,30px);letter-spacing:-.02em;color:#fff}
+.product__launch{font-family:Manrope;font-weight:700;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.04);color:#c4b5fd;white-space:nowrap}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.feature{padding:22px;border-radius:16px;border:1px solid var(--line);background:var(--card);backdrop-filter:blur(10px);transition:transform .18s,border-color .18s}
+.feature:hover{transform:translateY(-3px);border-color:rgba(138,180,255,.4)}
+.feature b{font-family:Manrope;font-weight:700;font-size:16px;color:#fff;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.feature b::before{content:"";width:9px;height:9px;border-radius:3px;background:conic-gradient(from 0deg,#4285F4,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);flex:none}
+.feature p{color:var(--ink2);font-size:14px;line-height:1.55}
+
+/* in scene, not in use callout */
+.inscene{margin-top:34px;padding:26px 28px;border-radius:20px;border:1px solid transparent;
+  background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--prismborder) border-box;backdrop-filter:blur(12px)}
+.inscene__k{font-family:Manrope;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:9px}
+.inscene p{color:var(--ink2);font-size:15.5px;line-height:1.6}
+.inscene em{font-style:italic;color:var(--ink)}
+
 /* statement band */
 .statement{margin:64px auto 0;max-width:20ch;text-align:center;font-family:Manrope;font-weight:800;font-size:clamp(28px,4.4vw,52px);line-height:1.08;letter-spacing:-.03em;
   background:linear-gradient(180deg,#ffffff,#c6cad6);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -291,6 +309,7 @@ strong{color:#fff;font-weight:600}
   .flow{flex-direction:column}
   .flow__arrow{transform:rotate(90deg)}
   .tiers{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr}
   .sec__h2{max-width:none}
 }
 @media(max-width:540px){
