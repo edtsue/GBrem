@@ -45,8 +45,8 @@ Vanilla — no build step. Deployed on Vercel (account/domain confirmed at deplo
 
 Password gate like YTST:
 - `middleware.js` (edge) checks a signed cookie; unauthenticated requests for the app redirect to `gate.html`.
-- `gate.html` posts the typed password to `/api/gate`; `api/gate.js` compares against `GBREM_PASSWORD` env var and, on match, sets a signed HttpOnly cookie (HMAC with a `GBREM_GATE_SECRET`, rotatable to evict all sessions).
-- **Fail-open if `GBREM_PASSWORD` is unset** (so local dev / preview isn't bricked), matching YTST's forgiving pattern.
+- `gate.html` posts the typed password to `/api/gate`; `api/gate.js` compares against the **`gate_pw`** env var (already set on the Vercel project for Preview + Production, Encrypted) and, on match, sets a signed HttpOnly cookie (HMAC with a `GBREM_GATE_SECRET`, rotatable to evict all sessions).
+- **Fail-open if `gate_pw` is unset** (so local dev / preview isn't bricked — `gate_pw` is intentionally absent from the Development environment), matching YTST's forgiving pattern.
 
 ## 5. Sections
 

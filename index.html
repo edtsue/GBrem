@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GBrem — Googlebook × Rembrand</title>
+<meta name="description" content="AI-native product placement — Rembrand drops Google's new Googlebook into premium scenes at the speed of thought." />
+<link rel="icon" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- NOTE: neutral scaffold — visual direction TBD. Deck modal system is final. -->
+  <header class="nav">
+    <div class="brand"><span class="gmark"></span>Googlebook</div>
+    <nav class="nav__links">
+      <a href="#opportunity">Opportunity</a>
+      <a href="#how">How it works</a>
+      <a href="#production">Production</a>
+      <button class="nav__decks" data-open-deck="0" type="button">Decks ▾</button>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="kicker">Google × Rembrand · AI-native product placement</div>
+    <h1>Placed at the speed of thought.</h1>
+    <p class="lede">Rembrand's in-content AI drops Google's new <strong>Googlebook</strong> into the exact scenes where creativity and quick thinking happen — natively, at scale, without ever touching production.</p>
+
+    <div class="decks">
+      <button class="deck-btn" data-open-deck="0" type="button">
+        <span class="deck-btn__ic">▶</span>
+        <span class="deck-btn__tx"><b id="deck0-label">Presentation One</b><em>Open full deck</em></span>
+      </button>
+      <button class="deck-btn" data-open-deck="1" type="button">
+        <span class="deck-btn__ic">▶</span>
+        <span class="deck-btn__tx"><b id="deck1-label">Presentation Two</b><em>Open full deck</em></span>
+      </button>
+    </div>
+  </main>
+
+  <!-- DECK MODAL -->
+  <div class="deck-modal" id="deckModal" hidden>
+    <div class="deck-modal__backdrop" data-close-deck></div>
+    <div class="deck-modal__panel" role="dialog" aria-modal="true" aria-label="Presentation">
+      <div class="deck-modal__bar">
+        <span class="deck-modal__title" id="deckModalTitle">Presentation</span>
+        <div class="deck-modal__actions">
+          <a class="deck-modal__link" id="deckModalOpen" href="#" target="_blank" rel="noopener">Open in Google&nbsp;Slides ↗</a>
+          <button class="deck-modal__close" data-close-deck type="button" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="deck-modal__frame">
+        <iframe id="deckFrame" title="Presentation" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
