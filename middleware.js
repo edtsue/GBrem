@@ -13,7 +13,7 @@
 import { rewrite, next } from '@vercel/edge';
 
 export const config = {
-  matcher: ['/((?!api/gate|gate.html).*)'],
+  matcher: ['/((?!api/gate|gate.html|assets/og).*)'],
 };
 
 const COOKIE = 'gbseen_gate';

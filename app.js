@@ -41,17 +41,6 @@ document.querySelectorAll("[data-open-deck]").forEach((b) =>
 document.querySelectorAll("[data-close-deck]").forEach((b) =>
   b.addEventListener("click", closeDeck));
 
-/* ---- Brief panel ---- */
-const briefPanel = document.getElementById("briefPanel");
-function openBrief() { briefPanel.hidden = false; document.body.style.overflow = "hidden"; }
-function closeBrief() { briefPanel.hidden = true; document.body.style.overflow = ""; }
-["briefBtn", "briefBtn2", "briefBtn3"].forEach((id) => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener("click", openBrief);
-});
-document.querySelectorAll("[data-close-brief]").forEach((b) =>
-  b.addEventListener("click", closeBrief));
-
 /* ---- Product modal: opens when any "Googlebook" word is clicked ---- */
 const productModal = document.getElementById("productModal");
 function openProduct() { productModal.hidden = false; document.body.style.overflow = "hidden"; }
@@ -105,7 +94,6 @@ document.addEventListener("keydown", (e) => {
   if (!deckModal.hidden) closeDeck();
   else if (!productModal.hidden) closeProduct();
   else if (!audienceModal.hidden) closeAudience();
-  else if (!briefPanel.hidden) closeBrief();
 });
 
 /* ---- Concept title typewriter: types "AS SEEN" (beat) "IN SCENES" ---- */

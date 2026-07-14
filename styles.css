@@ -75,7 +75,7 @@ strong{color:#fff;font-weight:600}
 .hero__video-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero__scrim{position:absolute;inset:0;background:
   radial-gradient(120% 95% at 50% 42%,rgba(6,6,10,.62),rgba(6,6,10,.82) 62%,rgba(6,6,10,.96));}
-.hero__video-el{filter:brightness(.8)}
+.hero__video-el{filter:brightness(.88)}
 .scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--ink3);font-family:Manrope;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite}
 .scrollcue i{font-style:normal;font-size:16px}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
@@ -86,7 +86,7 @@ strong{color:#fff;font-weight:600}
 .hero__h1{font-family:Manrope;font-weight:800;font-size:clamp(46px,7.6vw,96px);line-height:1.0;letter-spacing:-.04em;margin:0 auto;max-width:13ch;
   background:linear-gradient(180deg,#ffffff,#c6cad6);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* concept title — Courier screenplay font, ONE line, scales to viewport width */
-.hero__h1.concept{font-family:"Courier Prime",ui-monospace,monospace;font-weight:700;font-size:clamp(19px,7.3vw,94px);letter-spacing:0;line-height:1.08;max-width:none;white-space:nowrap}
+.hero__h1.concept{font-family:"Courier Prime",ui-monospace,monospace;font-weight:700;font-size:clamp(19px,7.3vw,94px);letter-spacing:0;line-height:1.08;max-width:none;white-space:nowrap;min-height:1.1em}
 .hero__h1 .grad{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* concept title — "As Seen On TV" title-card energy, typed out by JS */
 .concept{text-transform:uppercase;letter-spacing:0}
