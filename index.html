@@ -6,57 +6,231 @@
 <title>GBrem — Googlebook × Rembrand</title>
 <meta name="description" content="AI-native product placement — Rembrand drops Google's new Googlebook into premium scenes at the speed of thought." />
 <link rel="icon" href="assets/favicon.svg" />
+<meta property="og:title" content="Googlebook × Rembrand — Placed at the speed of thought" />
+<meta property="og:description" content="AI-native product placement that drops Google's new Googlebook into the exact scenes where the speed of thought is happening — at scale, without touching production." />
+<meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- NOTE: neutral scaffold — visual direction TBD. Deck modal system is final. -->
-  <header class="nav">
-    <div class="brand"><span class="gmark"></span>Googlebook</div>
+<!-- backdrop -->
+<div class="aurora" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span><span class="d"></span></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav__in">
+    <a class="brand" href="#top"><span class="gmark"></span>Googlebook</a>
     <nav class="nav__links">
       <a href="#opportunity">Opportunity</a>
       <a href="#how">How it works</a>
       <a href="#production">Production</a>
-      <button class="nav__decks" data-open-deck="0" type="button">Decks ▾</button>
+      <button class="nav__brief" id="briefBtn" type="button">Brief</button>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main class="hero">
-    <div class="kicker">Google × Rembrand · AI-native product placement</div>
-    <h1>Placed at the speed of thought.</h1>
-    <p class="lede">Rembrand's in-content AI drops Google's new <strong>Googlebook</strong> into the exact scenes where creativity and quick thinking happen — natively, at scale, without ever touching production.</p>
-
-    <div class="decks">
-      <button class="deck-btn" data-open-deck="0" type="button">
-        <span class="deck-btn__ic">▶</span>
-        <span class="deck-btn__tx"><b id="deck0-label">Presentation One</b><em>Open full deck</em></span>
-      </button>
-      <button class="deck-btn" data-open-deck="1" type="button">
-        <span class="deck-btn__ic">▶</span>
-        <span class="deck-btn__tx"><b id="deck1-label">Presentation Two</b><em>Open full deck</em></span>
-      </button>
+<!-- HERO -->
+<main id="top" class="hero">
+  <div class="hero__in reveal">
+    <div class="kicker"><span class="dot"></span>Google × Rembrand · AI-native product placement</div>
+    <h1 class="hero__h1">Placed at the speed of <span class="grad shimmer">thought.</span></h1>
+    <p class="hero__lede">In a world first, Rembrand's in-content AI casts Google's <strong>first AI laptop</strong> — the <strong>Googlebook</strong> — into the exact scenes where creativity and quick thinking happen. Natively, at scale, without ever touching production.</p>
+    <div class="hero__cta">
+      <a class="btn btn-p" href="#opportunity"><span>See the opportunity</span> →</a>
+      <button class="btn btn-s" id="briefBtn2" type="button">Read the brief</button>
     </div>
-  </main>
+    <div class="hero__decks">
+      <button class="deck-btn" data-open-deck="0" type="button"><span class="deck-btn__ic">▶</span><span class="deck-btn__tx"><b id="deck0-label">Presentation One</b><em>Open full deck</em></span></button>
+      <button class="deck-btn" data-open-deck="1" type="button"><span class="deck-btn__ic">▶</span><span class="deck-btn__tx"><b id="deck1-label">Presentation Two</b><em>Open full deck</em></span></button>
+    </div>
+  </div>
+</main>
 
-  <!-- DECK MODAL -->
-  <div class="deck-modal" id="deckModal" hidden>
-    <div class="deck-modal__backdrop" data-close-deck></div>
-    <div class="deck-modal__panel" role="dialog" aria-modal="true" aria-label="Presentation">
-      <div class="deck-modal__bar">
-        <span class="deck-modal__title" id="deckModalTitle">Presentation</span>
-        <div class="deck-modal__actions">
-          <a class="deck-modal__link" id="deckModalOpen" href="#" target="_blank" rel="noopener">Open in Google&nbsp;Slides ↗</a>
-          <button class="deck-modal__close" data-close-deck type="button" aria-label="Close">✕</button>
+<!-- SECTION 01 — OPPORTUNITY -->
+<section id="opportunity" class="sec">
+  <div class="sec__in">
+    <div class="eyebrow reveal"><span class="eyebrow__n">01</span><span class="eyebrow__sweep"></span><span class="eyebrow__t">The Opportunity</span></div>
+    <h2 class="sec__h2 reveal">The laptop for the moments of <span class="grad">fastest thought.</span></h2>
+    <p class="sec__lede reveal">The Googlebook belongs inside the scenes where people think fast and create — the writers' room, the late-night breakthrough, the plan coming together. Not in the ad break beside them. <em>In</em> them.</p>
+
+    <div class="split">
+      <div class="card card--problem reveal">
+        <div class="card__tag">The problem</div>
+        <h3>Placement can't move at the speed of a launch.</h3>
+        <p>Traditional product placement is locked months before air — production schedules, IP clearances, reshoots that never happen. A new category can't wait for next season.</p>
+      </div>
+      <div class="card card--solution reveal">
+        <div class="card__tag card__tag--g">Rembrand fixes it</div>
+        <h3>AI places the Googlebook after the cameras stop.</h3>
+        <p>Rembrand's in-content AI composites the laptop natively into approved, already-shot scenes — photoreal, brand-safe, and live in weeks, not seasons.</p>
+      </div>
+    </div>
+
+    <blockquote class="statement reveal">
+      The future of tech doesn't interrupt the story. <span class="grad">It joins it.</span>
+      <cite>A new AI product deserves a new AI product placement.</cite>
+    </blockquote>
+
+    <!-- DEMO VIDEO SLOT -->
+    <figure class="demo reveal" id="demoSlot">
+      <div class="demo__frame">
+        <video id="demoVid" class="demo__vid" playsinline controls preload="none" poster="assets/demo-poster.jpg"></video>
+        <div class="demo__empty" id="demoEmpty">
+          <span class="demo__play">▶</span>
+          <p>Rembrand technology reel</p>
+          <small>Drop <code>assets/demo.mp4</code> here — it will play in place.</small>
         </div>
       </div>
-      <div class="deck-modal__frame">
-        <iframe id="deckFrame" title="Presentation" allowfullscreen loading="lazy"></iframe>
+      <figcaption>How Rembrand's in-content AI places a product into a finished scene.</figcaption>
+    </figure>
+
+    <!-- STATS -->
+    <div class="stats reveal">
+      <div class="stat"><div class="stat__n" data-count="35" data-prefix="+" data-suffix="%">+0%</div><div class="stat__l">sales lift with In-Content</div></div>
+      <div class="stat"><div class="stat__n" data-count="100" data-suffix="%">0%</div><div class="stat__l">viewability, always in-scene</div></div>
+      <div class="stat"><div class="stat__n" data-count="2" data-suffix="×">0×</div><div class="stat__l">engagement vs standard ads</div></div>
+      <div class="stat"><div class="stat__n" data-count="225" data-suffix="+">0+</div><div class="stat__l">global brand partners</div></div>
+    </div>
+    <p class="stats__src reveal">Source: Rembrand in-content performance benchmarks.</p>
+  </div>
+</section>
+
+<!-- SECTION 02 — HOW IT WORKS -->
+<section id="how" class="sec sec--alt">
+  <div class="sec__in">
+    <div class="eyebrow reveal"><span class="eyebrow__n">02</span><span class="eyebrow__sweep"></span><span class="eyebrow__t">How It Works · Be seen, in scene</span></div>
+    <h2 class="sec__h2 reveal">See it in a show you <span class="grad">already love.</span></h2>
+    <p class="sec__lede reveal">Take a premium, current series — say <strong>All American</strong>. The Googlebook appears exactly where it belongs: the study grind, the plan that comes together, the moment of quick thinking. Placed by AI, indistinguishable from the shot.</p>
+
+    <!-- MOCKUP BEFORE/AFTER -->
+    <figure class="mock reveal">
+      <div class="mock__frame" id="mockFrame">
+        <div class="mock__before"><span>SCENE — as shot</span></div>
+        <div class="mock__after" id="mockAfter"><span>SCENE — Googlebook placed</span></div>
+        <input class="mock__range" id="mockRange" type="range" min="0" max="100" value="50" aria-label="Reveal placement" />
+        <div class="mock__handle" id="mockHandle"><span>◄ ►</span></div>
+        <div class="mock__note">Mockup drops in at <code>assets/mockup.png</code> (before) &amp; <code>assets/mockup-after.png</code> (after).</div>
+      </div>
+      <figcaption>Before → after: the same frame, with the Googlebook composited in.</figcaption>
+    </figure>
+
+    <!-- PLACEMENT FINDER (live AI) -->
+    <div class="finder reveal" id="finder">
+      <div class="finder__head">
+        <h3>Placement Finder</h3>
+        <p>Pick a show and a moment. Our AI drafts a plausible, on-brand Googlebook placement — live.</p>
+      </div>
+      <div class="finder__controls">
+        <label class="field">
+          <span>Show</span>
+          <select id="finderShow"></select>
+        </label>
+        <label class="field">
+          <span>Moment</span>
+          <select id="finderMoment"></select>
+        </label>
+        <button class="btn btn-p" id="finderGo" type="button"><span>Generate placement</span> ✦</button>
+      </div>
+      <div class="finder__out" id="finderOut" hidden></div>
+    </div>
+
+    <!-- 3-STEP -->
+    <div class="steps reveal">
+      <div class="step"><span class="step__n">1</span><b>Approve the scenes</b><p>Google &amp; the studio pick moments that fit.</p></div>
+      <div class="step"><span class="step__n">2</span><b>AI composites the render</b><p>Rembrand places the Googlebook photoreal, in-frame.</p></div>
+      <div class="step"><span class="step__n">3</span><b>It's just there</b><p>Audiences see a laptop in a scene — not an ad.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 — PRODUCTION & MEDIA -->
+<section id="production" class="sec">
+  <div class="sec__in">
+    <div class="eyebrow reveal"><span class="eyebrow__n">03</span><span class="eyebrow__sweep"></span><span class="eyebrow__t">Production &amp; Media</span></div>
+    <h2 class="sec__h2 reveal">You hand over a render. <span class="grad">We handle the rest.</span></h2>
+    <p class="sec__lede reveal">No shoot days, no set visits, no waiting on next season. Deliver a single Googlebook render and Rembrand places it across approved scenes — every one co-signed by Google and the content owner.</p>
+
+    <div class="flow reveal">
+      <div class="flow__step"><b>Render</b><span>You supply one hero asset.</span></div>
+      <div class="flow__arrow">→</div>
+      <div class="flow__step"><b>AI composite</b><span>Placed natively into approved scenes.</span></div>
+      <div class="flow__arrow">→</div>
+      <div class="flow__step"><b>Programmatic delivery</b><span>Served &amp; optimized at scale.</span></div>
+    </div>
+
+    <div class="dual reveal">
+      <div class="dual__lock">🔒 Approved by <b>Google</b></div>
+      <div class="dual__x">＋</div>
+      <div class="dual__lock">🔒 Approved by the <b>content owner</b></div>
+    </div>
+
+    <!-- OWN A SHOW -->
+    <div class="own reveal">
+      <div class="own__glow"></div>
+      <div class="own__body">
+        <div class="own__tag">Flagship offer · Google's first AI laptop, placed by AI</div>
+        <h3>Own a Show.</h3>
+        <p>Make the Googlebook a consistent presence across every episode of a series — the laptop the characters actually use. Then wrap it with conventional ad inventory around the show. One title, owned end to end.</p>
+        <ul class="own__list">
+          <li>Consistent placement, episode to episode</li>
+          <li>First right to surrounding ad inventory</li>
+          <li>Category exclusivity within the title</li>
+        </ul>
       </div>
     </div>
   </div>
+</section>
 
-  <script src="app.js"></script>
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="foot__rule"></div>
+  <div class="foot__in">
+    <span class="brand"><span class="gmark"></span>Googlebook</span>
+    <span class="foot__note">A Google × Rembrand concept · Placed at the speed of thought.</span>
+    <button class="foot__brief" id="briefBtn3" type="button">The Brief</button>
+  </div>
+</footer>
+
+<!-- BRIEF PANEL -->
+<div class="brief" id="briefPanel" hidden>
+  <div class="brief__scrim" data-close-brief></div>
+  <aside class="brief__panel" role="dialog" aria-modal="true" aria-label="The brief">
+    <button class="brief__close" data-close-brief type="button" aria-label="Close">✕</button>
+    <div class="brief__tag">The one-page brief</div>
+    <h2>Googlebook × Rembrand</h2>
+    <p class="brief__lede">AI-native product placement that puts Google's new Googlebook into the scenes where the speed of thought is happening — at scale, without touching production.</p>
+    <ol class="brief__list">
+      <li><b>The opportunity</b> — the Googlebook belongs inside stories of fast thinking; traditional placement can't move at a launch's speed. Rembrand's AI can.</li>
+      <li><b>How it works</b> — approved scenes in premium shows, Googlebook composited photoreal by AI, live in weeks.</li>
+      <li><b>Production &amp; media</b> — hand over one render; dual-approved by Google &amp; the studio; own a show and wrap it with ad inventory.</li>
+    </ol>
+    <div class="brief__decks">
+      <button class="deck-btn" data-open-deck="0" type="button"><span class="deck-btn__ic">▶</span><span class="deck-btn__tx"><b>Presentation One</b><em>Open deck</em></span></button>
+      <button class="deck-btn" data-open-deck="1" type="button"><span class="deck-btn__ic">▶</span><span class="deck-btn__tx"><b>Presentation Two</b><em>Open deck</em></span></button>
+    </div>
+  </aside>
+</div>
+
+<!-- DECK MODAL -->
+<div class="deck-modal" id="deckModal" hidden>
+  <div class="deck-modal__backdrop" data-close-deck></div>
+  <div class="deck-modal__panel" role="dialog" aria-modal="true" aria-label="Presentation">
+    <div class="deck-modal__bar">
+      <span class="deck-modal__title" id="deckModalTitle">Presentation</span>
+      <div class="deck-modal__actions">
+        <a class="deck-modal__link" id="deckModalOpen" href="#" target="_blank" rel="noopener">Open in Google&nbsp;Slides ↗</a>
+        <button class="deck-modal__close" data-close-deck type="button" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="deck-modal__frame"><iframe id="deckFrame" title="Presentation" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
