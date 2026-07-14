@@ -75,16 +75,13 @@ strong{color:#fff;font-weight:600}
 .hero__h1{font-family:Manrope;font-weight:800;font-size:clamp(46px,7.6vw,96px);line-height:1.0;letter-spacing:-.04em;margin:0 auto;max-width:13ch;
   background:linear-gradient(180deg,#ffffff,#c6cad6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero__h1 .grad{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
-/* concept title — "As Seen On TV" title-card energy */
-.concept{display:flex;flex-direction:column;gap:.02em;text-transform:uppercase;letter-spacing:-.01em}
-.concept__l1,.concept__l2{display:block}
-/* composite-in: text materializes out of a blur, like a product placed into a scene */
-.mat{opacity:0;filter:blur(16px);transform:translateY(10px) scale(.985);animation:materialize 1s cubic-bezier(.2,.7,.3,1) forwards}
-.mat--2{animation-delay:.42s}
-/* line 2 materializes, then the iris gradient shimmers continuously */
-.concept__l2.mat{animation:materialize 1s cubic-bezier(.2,.7,.3,1) .42s forwards,shimmer 7s linear 1.5s infinite}
-@keyframes materialize{0%{opacity:0;filter:blur(16px);transform:translateY(10px) scale(.985)}60%{opacity:1}100%{opacity:1;filter:blur(0);transform:none}}
-@media(prefers-reduced-motion:reduce){.mat{opacity:1;filter:none;transform:none;animation:none}}
+/* concept title — "As Seen On TV" title-card energy, typed out by JS */
+.concept{display:flex;flex-direction:column;gap:.02em;text-transform:uppercase;letter-spacing:-.01em;min-height:2.05em}
+.concept__l1,.concept__l2{display:block;min-height:1em}
+/* typing caret */
+.caret{display:inline-block;width:.06em;height:.82em;margin-left:.05em;background:#c4b5fd;transform:translateY(.06em);animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.caret{display:none}}
 .hero__tagline{margin:20px auto 0;font-family:Manrope;font-weight:700;font-size:clamp(16px,2vw,20px);letter-spacing:.01em;color:var(--ink2)}
 .hero__lede{max-width:60ch;margin:20px auto 0;font-size:18.5px;line-height:1.6;color:var(--ink2)}
 .hero__cta{display:flex;gap:14px;justify-content:center;margin-top:38px;flex-wrap:wrap}

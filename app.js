@@ -58,6 +58,31 @@ document.addEventListener("keydown", (e) => {
   else if (!briefPanel.hidden) closeBrief();
 });
 
+/* ---- Concept title typewriter: types "AS SEEN" (beat) "IN SCENES" ---- */
+(function typeConcept() {
+  const l1 = document.getElementById("conceptL1");
+  const l2 = document.getElementById("conceptL2");
+  if (!l1 || !l2) return;
+  const CARET = '<span class="caret"></span>';
+  if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) {
+    l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES"; return;
+  }
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  async function typeInto(el, text, speed) {
+    for (let i = 1; i <= text.length; i++) {
+      el.innerHTML = text.slice(0, i) + CARET;
+      await wait(speed);
+    }
+  }
+  (async () => {
+    await wait(300);
+    await typeInto(l1, "AS SEEN", 90);   // type line 1
+    l1.innerHTML = "AS SEEN";            // drop caret from line 1
+    await wait(550);                      // ...beat...
+    await typeInto(l2, "IN SCENES", 90); // type line 2 (caret keeps blinking at end)
+  })();
+})();
+
 /* ---- Scroll reveals ---- */
 const io = new IntersectionObserver((entries) => {
   entries.forEach((en) => {
