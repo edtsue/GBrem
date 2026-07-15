@@ -139,12 +139,11 @@ document.addEventListener("keydown", (e) => {
   const tagL2 = document.querySelector(".tag__l2");
   const ledeEl = document.querySelector(".hero__lede");
   const heroVid = document.getElementById("heroVid");
-  const glowbar = document.querySelector(".hero .glowbar");
   const show = (el) => el && el.classList.add("show");
 
   if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) {
     l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES.";
-    [tagL1, tagL2, ledeEl, glowbar, heroVid].forEach(show);
+    [tagL1, tagL2, ledeEl, heroVid].forEach(show);
     return;
   }
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -166,9 +165,7 @@ document.addEventListener("keydown", (e) => {
     await wait(850);                       // ...beat...
     show(tagL2);                           // "...first AI product placement." in Glowbar colours
     await wait(850);                       // ...beat...
-    show(ledeEl);                          // then the body copy
-    await wait(400);
-    show(glowbar);                         // and the Glowbar lights up last
+    show(ledeEl);                          // then the body copy lands last
   })();
 })();
 
