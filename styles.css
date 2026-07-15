@@ -122,7 +122,6 @@ strong{color:#fff;font-weight:600}
   background:linear-gradient(180deg,#ffffff,#c6cad6);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* concept title — Courier screenplay font, ONE line, scales to viewport width */
 .hero__h1.concept{font-family:"Courier Prime",ui-monospace,monospace;font-weight:700;font-size:clamp(19px,7.3vw,94px);letter-spacing:0;line-height:1.08;max-width:none;white-space:nowrap;min-height:1.1em}
-.hero__h1 .grad{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
 /* concept title — "As Seen On TV" title-card energy, typed out by JS */
 .concept{text-transform:uppercase;letter-spacing:0}
 .concept__l1,.concept__l2{display:inline}
