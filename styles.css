@@ -212,17 +212,24 @@ strong{color:#fff;font-weight:600}
 /* streamer logo wall */
 .streamers{margin-top:52px;text-align:center}
 .streamers__k{font-family:Manrope;font-weight:700;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:22px}
-.streamers__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:20px 40px}
-.slogo{font-weight:800;font-size:22px;color:var(--ink2);opacity:.72;letter-spacing:-.01em;transition:opacity .2s,color .2s;filter:grayscale(1)}
-.slogo:hover{opacity:1;color:#fff;filter:none}
-.slogo--para{color:#0064ff}
-.slogo--hulu{color:#1ce783;text-transform:lowercase;font-weight:800}
-.slogo--nflx{color:#e50914;letter-spacing:.02em}
-.slogo--max{color:#7b5cff;text-transform:lowercase}
-.slogo--dis{color:#3fa9f5;font-family:Manrope}
-.slogo--peac{color:#fff;text-transform:lowercase}
-.slogo--prime{color:#1399ff;text-transform:lowercase}
-.slogo--appl{color:#e6e6e6}
+/* inventory sheet — source art is black-on-white, inverted to sit on the dark page */
+.sheet{position:relative;display:block;width:100%;border:1px solid var(--line);border-radius:20px;
+  background:rgba(255,255,255,.02);padding:18px 20px;cursor:zoom-in;font:inherit;color:inherit;
+  transition:border-color .2s,background .2s,transform .2s}
+.sheet:hover{border-color:var(--line2);background:rgba(255,255,255,.04);transform:translateY(-2px)}
+.sheet:focus-visible{outline:2px solid #c4b5fd;outline-offset:3px}
+.sheet__img{display:block;width:100%;height:auto;filter:invert(1) brightness(.92);opacity:.9;transition:opacity .25s}
+.sheet:hover .sheet__img{opacity:1}
+.sheet__zoom{position:absolute;top:14px;right:16px;z-index:2;font-family:Manrope;font-weight:700;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);padding:6px 11px;border-radius:999px;
+  border:1px solid var(--line2);background:rgba(12,12,18,.72);backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(-3px);transition:opacity .2s,transform .2s}
+.sheet:hover .sheet__zoom,.sheet:focus-visible .sheet__zoom{opacity:1;transform:none}
+
+@media (max-width:720px){
+  .sheet{padding:12px}
+  .sheet__zoom{opacity:1;transform:none}
+}
 
 /* in scene, not in use callout */
 .inscene{margin-top:34px;padding:26px 28px;border-radius:20px;border:1px solid transparent;
@@ -404,6 +411,11 @@ strong{color:#fff;font-weight:600}
 .pmodal__close{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.06);color:#fff;font-size:14px;cursor:pointer;z-index:2}
 .pmodal__close:hover{background:rgba(255,255,255,.14)}
 .pmodal .product__head{margin-top:0}
+
+/* expanded inventory sheet — must follow .pmodal__panel to win on source order */
+.pmodal__panel--sheet{width:min(1700px,100%);padding:52px 22px 22px}
+.sheetfull{overflow:auto;overscroll-behavior:contain;max-height:78vh;border-radius:14px;-webkit-overflow-scrolling:touch}
+.sheetfull__img{display:block;width:100%;min-width:900px;height:auto;filter:invert(1) brightness(.92)}
 
 /* deck modal */
 .deck-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:clamp(12px,3vw,40px)}

@@ -140,19 +140,14 @@
       <p>Rembrand places the Googlebook <em>in the moment</em> — on the desk, in the room — never in an actor's hands. The <strong>Glowbar</strong> lid light does the identifying: audiences clock a Googlebook at a glance, no "as-used" shot required.</p>
     </div>
 
-    <!-- STREAMER LOGO WALL (swap in real logo SVGs at assets/logos/ later) -->
+    <!-- NETWORKS & STUDIOS AVAILABLE -->
     <div class="streamers reveal">
-      <div class="streamers__k">Across the premium streamers your audience lives on</div>
-      <div class="streamers__row">
-        <span class="slogo slogo--para">Paramount+</span>
-        <span class="slogo slogo--hulu">hulu</span>
-        <span class="slogo slogo--nflx">NETFLIX</span>
-        <span class="slogo slogo--max">max</span>
-        <span class="slogo slogo--dis">Disney+</span>
-        <span class="slogo slogo--peac">peacock</span>
-        <span class="slogo slogo--prime">prime video</span>
-        <span class="slogo slogo--appl">Apple TV+</span>
-      </div>
+      <div class="streamers__k">The networks and studios available</div>
+      <button class="sheet" type="button" data-open-sheet aria-label="Expand the inventory sheet">
+        <span class="sheet__zoom" aria-hidden="true">Expand ⤢</span>
+        <img class="sheet__img" src="assets/inventory.webp" width="1998" height="763" loading="lazy" decoding="async"
+             alt="Available inventory across five tiers. Premium/Primetime Networks: Warner Bros., Paramount, FOX, The Walt Disney Latin America, Univision. Premium/Primetime Production Studios: 101 Studios, Legacy Expeditions, BondIt Media Capital, Fremantle, Gemelli, Candlelight Media Group, Caracol. Cable, FAST and AVOD distribution: AMC Networks, A&amp;E, The CW, Hallmark, Outside TV, EBONY, Tastemade, UPtv, Crave, BET+, Great American Family, Hallmark Movies &amp; Mysteries, ion Plus, CTV, History, Quebecor, Canela Media, LatiNation, aspire, Vox, InsightTV, Citytv, mit&uacute;, Lifetime, iTalkBB, HGTV, Food Network, Discovery Channel, TLC. Plus YouTube and social distribution partners, and micro-drama distribution." />
+      </button>
       <button class="btn btn-s aud-cta" data-open-audience type="button"><span>See the audience interests</span> ▤</button>
     </div>
   </div>
@@ -269,6 +264,18 @@
       <div class="feature"><b>Phone app streaming</b><p>Stream any Android app from a nearby phone into a floating window — order food or finish a Duolingo lesson without leaving your screen.</p></div>
       <div class="feature"><b>Quick Access</b><p>View, search and insert your phone's files straight from the Googlebook file browser — no transfers.</p></div>
       <div class="feature"><b>Glowbar</b><p>A rectangular LED lid light — functional and beautiful — that identifies a Googlebook at a glance.</p><div class="glowbar glowbar--mini" aria-hidden="true"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- INVENTORY SHEET MODAL -->
+<div class="pmodal" id="sheetModal" hidden data-no-gb>
+  <div class="pmodal__backdrop" data-close-sheet></div>
+  <div class="pmodal__panel pmodal__panel--sheet" role="dialog" aria-modal="true" aria-label="The networks and studios available">
+    <button class="pmodal__close" data-close-sheet type="button" aria-label="Close">✕</button>
+    <div class="sheetfull">
+      <img class="sheetfull__img" src="assets/inventory.webp" width="1998" height="763" decoding="async"
+           alt="Full-size inventory sheet: the networks, studios and distribution partners available through Rembrand." />
     </div>
   </div>
 </div>
