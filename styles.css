@@ -189,8 +189,14 @@ strong{color:#fff;font-weight:600}
 /* glass card helper */
 .glass{border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--prismborder) border-box;backdrop-filter:blur(12px)}
 
-/* problem/solution split */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
+/* barrier/solution — stacked, so the point reads as a sequence not a comparison */
+.split{display:grid;grid-template-columns:1fr;gap:22px;margin-top:48px}
+/* each row splits internally: claim left, detail right. Full-width rows would
+   otherwise run ~139 characters a line and flatten into strips. */
+.split .card{display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr);column-gap:46px;align-items:start;padding:34px}
+.split .card__tag{grid-column:1;grid-row:1}
+.split .card h3{grid-column:1;grid-row:2;margin-bottom:0}
+.split .card p{grid-column:2;grid-row:1/span 2;align-self:center}
 .card{position:relative;padding:30px;border-radius:20px;transition:transform .2s,filter .2s;
   border:1px solid var(--line);background:var(--card);backdrop-filter:blur(12px)}
 .card:hover{transform:translateY(-3px)}
@@ -455,7 +461,8 @@ strong{color:#fff;font-weight:600}
 @media(max-width:900px){
   .nav__links a{display:none}
   .brand{font-size:16px}
-  .split{grid-template-columns:1fr}
+  .split .card{display:block}
+  .split .card h3{margin-bottom:10px}
   .stats{grid-template-columns:repeat(2,1fr)}
   .flow{flex-direction:column}
   .flow__arrow{transform:rotate(90deg)}
