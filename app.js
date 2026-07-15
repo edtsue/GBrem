@@ -55,6 +55,13 @@ function closeAudience() { audienceModal.hidden = true; document.body.style.over
 document.querySelectorAll("[data-open-audience]").forEach((b) => b.addEventListener("click", openAudience));
 document.querySelectorAll("[data-close-audience]").forEach((b) => b.addEventListener("click", closeAudience));
 
+/* ---- Inventory sheet modal ---- */
+const sheetModal = document.getElementById("sheetModal");
+function openSheet() { sheetModal.hidden = false; document.body.style.overflow = "hidden"; }
+function closeSheet() { sheetModal.hidden = true; document.body.style.overflow = ""; }
+document.querySelectorAll("[data-open-sheet]").forEach((b) => b.addEventListener("click", openSheet));
+document.querySelectorAll("[data-close-sheet]").forEach((b) => b.addEventListener("click", closeSheet));
+
 /* Wrap every on-page "Googlebook" in a clickable button (skips [data-no-gb]) */
 (function linkGooglebook() {
   const skip = (el) => {
@@ -92,6 +99,7 @@ document.querySelectorAll("[data-close-audience]").forEach((b) => b.addEventList
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   if (!deckModal.hidden) closeDeck();
+  else if (!sheetModal.hidden) closeSheet();
   else if (!productModal.hidden) closeProduct();
   else if (!audienceModal.hidden) closeAudience();
 });
