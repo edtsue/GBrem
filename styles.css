@@ -5,6 +5,7 @@
   --ink:#eef0f4; --ink2:#8b90a0; --ink3:#63697a; --bg:#0d0e12; --bg2:#101218;
   --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.16); --card:rgba(255,255,255,.035);
   --blue:#4285F4; --cyan:#22d3ee; --purple:#8b5cf6; --pink:#ec4899; --amber:#f59e0b; --green:#34A853;
+  --red:#f87171; --redline:rgba(239,68,68,.45);
   --iris:linear-gradient(100deg,#8ab4ff,#22d3ee 40%,#c4b5fd 70%,#f0abfc);
   --grad:linear-gradient(100deg,#8ab4ff,#22d3ee 40%,#c4b5fd 70%,#f0abfc);
   /* the Glowbar rainbow — shared by the lid light and any text wearing it */
@@ -193,10 +194,17 @@ strong{color:#fff;font-weight:600}
 .card{position:relative;padding:30px;border-radius:20px;transition:transform .2s,filter .2s;
   border:1px solid var(--line);background:var(--card);backdrop-filter:blur(12px)}
 .card:hover{transform:translateY(-3px)}
+/* the barrier — caution red, set against the solution card's prism border.
+   Must follow .card to override its border-color on source order. */
+.card--problem{border-color:var(--redline)}
+.card--problem:hover{border-color:rgba(239,68,68,.75)}
 .card--solution{border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,var(--prismborder) border-box}
 .card--solution:hover{filter:brightness(1.08)}
 .card__tag{display:inline-block;font-family:Manrope;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin-bottom:14px}
 .card__tag--g{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card__tag--r{color:var(--red)}
+/* emoji keep their own colour, so hold them off the tag's */
+.card__tag-ico{margin-right:7px;font-weight:400;-webkit-text-fill-color:initial}
 .card h3{font-family:Manrope;font-weight:700;font-size:22px;letter-spacing:-.02em;margin-bottom:10px;color:#fff}
 .card p{color:var(--ink2);font-size:15.5px;line-height:1.6}
 
