@@ -106,10 +106,11 @@ document.querySelectorAll("[data-close-sheet]").forEach((b) => b.addEventListene
   while (walker.nextNode()) nodes.push(walker.currentNode);
   nodes.forEach((node) => {
     const frag = document.createDocumentFragment();
-    node.nodeValue.split(/(Googlebook)/g).forEach((part) => {
-      if (part === "Googlebook") {
+    // take the plural too, else the link's underline stops short: "Googlebook‾s"
+    node.nodeValue.split(/(Googlebooks?)/g).forEach((part) => {
+      if (/^Googlebooks?$/.test(part)) {
         const b = document.createElement("button");
-        b.className = "gb-link"; b.type = "button"; b.textContent = "Googlebook";
+        b.className = "gb-link"; b.type = "button"; b.textContent = part;
         frag.appendChild(b);
       } else if (part) {
         frag.appendChild(document.createTextNode(part));
