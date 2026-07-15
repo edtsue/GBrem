@@ -55,6 +55,30 @@ function closeAudience() { audienceModal.hidden = true; document.body.style.over
 document.querySelectorAll("[data-open-audience]").forEach((b) => b.addEventListener("click", openAudience));
 document.querySelectorAll("[data-close-audience]").forEach((b) => b.addEventListener("click", closeAudience));
 
+/* ---- Videos that play while in view and pause once they leave ----
+   Autoplay only works muted; controls stay on so sound is one click away.
+   Once a viewer unmutes we stop forcing play, but still pause on exit so the
+   audio never follows them down the page. Don't infer intent from "pause" —
+   a backgrounded tab pauses too, which would strand the video for good. */
+document.querySelectorAll("[data-autoplay-in-view]").forEach((vid) => {
+  let userDriven = false, inView = false;
+  const tryPlay = () => {
+    if (userDriven || !inView || document.hidden) return;
+    vid.preload = "auto";
+    const p = vid.play();
+    if (p) p.catch(() => {}); // autoplay can still be refused; the poster stays up
+  };
+  vid.addEventListener("volumechange", () => { if (!vid.muted) userDriven = true; });
+  new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      inView = en.isIntersecting;
+      if (inView) tryPlay();
+      else if (!vid.paused) vid.pause();
+    });
+  }, { threshold: 0.45 }).observe(vid);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) tryPlay(); });
+});
+
 /* ---- Inventory sheet modal ---- */
 const sheetModal = document.getElementById("sheetModal");
 function openSheet() { sheetModal.hidden = false; document.body.style.overflow = "hidden"; }
@@ -104,19 +128,23 @@ document.addEventListener("keydown", (e) => {
   else if (!audienceModal.hidden) closeAudience();
 });
 
-/* ---- Concept title typewriter: types "AS SEEN" (beat) "IN SCENES" ---- */
+/* ---- Hero intro: opens on pitch black, then types the concept name and
+   lands each line of the promise on its own beat. ---- */
 (function typeConcept() {
   const l1 = document.getElementById("conceptL1");
   const l2 = document.getElementById("conceptL2");
   if (!l1 || !l2) return;
   const CARET = '<span class="caret"></span>';
-  const taglineEl = document.querySelector(".hero__tagline");
+  const tagL1 = document.querySelector(".tag__l1");
+  const tagL2 = document.querySelector(".tag__l2");
   const ledeEl = document.querySelector(".hero__lede");
+  const heroVid = document.getElementById("heroVid");
+  const glowbar = document.querySelector(".hero .glowbar");
+  const show = (el) => el && el.classList.add("show");
+
   if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) {
     l1.textContent = "AS SEEN"; l2.textContent = "IN SCENES.";
-    taglineEl && taglineEl.classList.add("show");
-    ledeEl && ledeEl.classList.add("show");
-    document.querySelector(".hero .glowbar") && document.querySelector(".hero .glowbar").classList.add("show");
+    [tagL1, tagL2, ledeEl, glowbar, heroVid].forEach(show);
     return;
   }
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -127,18 +155,20 @@ document.addEventListener("keydown", (e) => {
     }
   }
   (async () => {
-    await wait(300);
-    await typeInto(l1, "AS SEEN", 90);   // type line 1
-    l1.innerHTML = "AS SEEN";            // drop caret from line 1
-    await wait(550);                      // ...beat...
-    await typeInto(l2, "IN SCENES.", 90); // type line 2 (caret keeps blinking at end)
-    await wait(450);                       // ...a beat after the title lands...
-    taglineEl && taglineEl.classList.add("show");  // tagline fades in dramatically
-    await wait(350);
-    ledeEl && ledeEl.classList.add("show");        // then the lede
-    await wait(300);
-    const gb = document.querySelector(".hero .glowbar");
-    gb && gb.classList.add("show");                // then the Glowbar lights up
+    await wait(700);                       // ...pitch black, hold...
+    await typeInto(l1, "AS SEEN", 90);
+    l1.innerHTML = "AS SEEN";              // drop caret from line 1
+    await wait(550);                       // ...beat...
+    await typeInto(l2, "IN SCENES.", 90);  // caret keeps blinking at the end
+    show(heroVid);                         // the scene fades up behind the name
+    await wait(900);                       // ...beat...
+    show(tagL1);                           // "Google's first AI laptop deserves"
+    await wait(850);                       // ...beat...
+    show(tagL2);                           // "...first AI product placement." in Glowbar colours
+    await wait(850);                       // ...beat...
+    show(ledeEl);                          // then the body copy
+    await wait(400);
+    show(glowbar);                         // and the Glowbar lights up last
   })();
 })();
 
