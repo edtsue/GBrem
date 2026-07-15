@@ -7,6 +7,8 @@
   --blue:#4285F4; --cyan:#22d3ee; --purple:#8b5cf6; --pink:#ec4899; --amber:#f59e0b; --green:#34A853;
   --iris:linear-gradient(100deg,#8ab4ff,#22d3ee 40%,#c4b5fd 70%,#f0abfc);
   --grad:linear-gradient(100deg,#8ab4ff,#22d3ee 40%,#c4b5fd 70%,#f0abfc);
+  /* the Glowbar rainbow — shared by the lid light and any text wearing it */
+  --glow:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);
   --prismborder:linear-gradient(140deg,rgba(138,180,255,.55),rgba(236,72,153,.4),rgba(52,168,83,.32));
   --panel:rgba(20,22,28,.6);
   --maxw:1180px;
@@ -40,6 +42,9 @@ strong{color:#fff;font-weight:600}
 /* ---- shared ---- */
 .grad{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
 .shimmer{background-size:220% 100%;animation:shimmer 7s linear infinite}
+/* text wearing the Glowbar's rainbow — same gradient, same travel as the lid light */
+.grad-glow{background:var(--glow);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;
+  color:transparent;animation:glowflow 5s linear infinite}
 @keyframes shimmer{to{background-position:220% 0}}
 .sec__in,.hero__in,.nav__in,.foot__in{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:2}
 .btn{font-family:Manrope;font-weight:700;font-size:15px;padding:14px 28px;border-radius:999px;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,box-shadow .2s,filter .2s;white-space:nowrap}
@@ -98,8 +103,11 @@ strong{color:#fff;font-weight:600}
 
 /* ---- hero ---- */
 .hero{position:relative;z-index:2;min-height:calc(100svh - 72px);display:flex;flex-direction:column;justify-content:center;text-align:center;padding:48px 0;overflow:hidden}
-.hero__video{position:absolute;inset:0;z-index:0;overflow:hidden}
-.hero__video-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* the hero opens on pitch black; the scene fades up once the title has landed */
+.hero__video{position:absolute;inset:0;z-index:0;overflow:hidden;background:#000}
+.hero__video-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 1.6s ease}
+.hero__video-el.show{opacity:1}
 .hero__scrim{position:absolute;inset:0;background:
   radial-gradient(120% 95% at 50% 42%,rgba(6,6,10,.62),rgba(6,6,10,.82) 62%,rgba(6,6,10,.96));}
 .hero__video-el{filter:brightness(.88)}
@@ -123,6 +131,8 @@ strong{color:#fff;font-weight:600}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @media(prefers-reduced-motion:reduce){.caret{display:none}}
 .hero__tagline{margin:22px auto 0;font-family:Manrope;font-weight:700;font-size:clamp(16px,2.1vw,22px);letter-spacing:.01em;color:var(--ink);max-width:42ch;text-wrap:balance}
+/* the two halves land on separate beats, so each gets its own line */
+.tag__l1,.tag__l2{display:block}
 /* cascade-in after the title finishes typing */
 .hfade{opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
 .hfade.show{opacity:1;transform:none}
@@ -133,7 +143,7 @@ strong{color:#fff;font-weight:600}
 
 /* ---- Glowbar (the Googlebook lid light) — signature motif ---- */
 .glowbar{position:relative;width:min(440px,74vw);height:9px;margin:40px auto 0;border-radius:999px;
-  background:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);
+  background:var(--glow);
   background-size:200% 100%;
   animation:glowflow 5s linear infinite,glowbreathe 3.4s ease-in-out infinite;
   box-shadow:0 0 22px rgba(139,92,246,.6),0 0 60px rgba(66,133,244,.35)}
@@ -144,7 +154,7 @@ strong{color:#fff;font-weight:600}
   mix-blend-mode:overlay;animation:gleam 2.8s ease-in-out infinite}
 /* breathing bloom beneath */
 .glowbar::after{content:"";position:absolute;left:-8%;right:-8%;top:50%;height:46px;transform:translateY(-50%);border-radius:999px;z-index:-1;
-  background:linear-gradient(90deg,#4285F4,#22d3ee,#8b5cf6,#ec4899,#FBBC04,#34A853,#4285F4);background-size:200% 100%;
+  background:var(--glow);background-size:200% 100%;
   filter:blur(30px);animation:glowflow 5s linear infinite,bloombreathe 3.4s ease-in-out infinite}
 @keyframes glowflow{to{background-position:200% 0}}
 @keyframes glowbreathe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.28)}}
