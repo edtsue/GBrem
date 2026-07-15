@@ -188,20 +188,6 @@ if (spot && window.matchMedia("(pointer:fine)").matches) {
   });
 }
 
-/* ---- Mockup before/after slider ---- */
-const mockRange = document.getElementById("mockRange");
-const mockAfter = document.getElementById("mockAfter");
-const mockHandle = document.getElementById("mockHandle");
-if (mockRange) {
-  const update = () => {
-    const v = mockRange.value;
-    mockAfter.style.clipPath = `inset(0 0 0 ${v}%)`;
-    mockHandle.style.left = v + "%";
-  };
-  mockRange.addEventListener("input", update);
-  update();
-}
-
 /* ---- If a real demo video exists, use it; else keep the empty state ---- */
 (function initDemo() {
   const vid = document.getElementById("demoVid");
