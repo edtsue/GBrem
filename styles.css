@@ -159,10 +159,11 @@ strong{color:#fff;font-weight:600}
 @keyframes bloombreathe{0%,100%{opacity:.42}50%{opacity:.82}}
 @keyframes gleam{0%{background-position:-40% 0}55%,100%{background-position:140% 0}}
 .glowbar--full{width:100%;height:5px;margin:0}
-/* hero horizon — the lid light along the hero's bottom edge. Needs its own
+/* the lid light, sitting low in the hero. Keeps the base pill — it's a product
+   indicator, not a divider, so it must not stretch edge to edge. Needs its own
    z-index: .hero is a stacking context, so the bar's z-index:-1 bloom would
    otherwise paint behind the video and vanish. */
-.hero__glow{position:absolute;left:0;right:0;bottom:0;z-index:3}
+.hero__glow{position:absolute;left:50%;transform:translateX(-50%);bottom:92px;margin:0;z-index:3}
 .glowbar--mini{width:100%;height:7px;margin:14px 0 0}
 @media(prefers-reduced-motion:reduce){.glowbar,.glowbar::before,.glowbar::after{animation:none}}
 
