@@ -226,6 +226,9 @@ strong{color:#fff;font-weight:600}
 .pill--green{color:#7ee0a0;border-color:rgba(52,168,83,.5);background:rgba(52,168,83,.12)}
 .pill--amber{color:#fbd07a;border-color:rgba(245,158,11,.5);background:rgba(245,158,11,.12)}
 .pill--pink{color:#f9a8d4;border-color:rgba(236,72,153,.5);background:rgba(236,72,153,.12)}
+.pill--purple{color:#c4b5fd;border-color:rgba(139,92,246,.5);background:rgba(139,92,246,.12)}
+.pill--cyan{color:#8be3f2;border-color:rgba(34,211,238,.5);background:rgba(34,211,238,.12)}
+.pills--center{justify-content:center;margin-top:18px}
 
 /* product features */
 .product__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px}
