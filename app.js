@@ -154,7 +154,7 @@ document.addEventListener("keydown", (e) => {
       await wait(speed);
     }
   }
-  (async () => {
+  const runIntro = () => (async () => {
     await wait(700);                       // ...pitch black, hold...
     await typeInto(l1, "AS SEEN", 90);
     l1.innerHTML = "AS SEEN";              // drop caret from line 1
@@ -168,6 +168,17 @@ document.addEventListener("keydown", (e) => {
     await wait(850);                       // ...beat...
     show(ledeEl);                          // then the body copy lands last
   })();
+
+  // hold the intro until the hero scrolls into view (behind the cover screen)
+  const heroEl = document.getElementById("top");
+  if (heroEl && "IntersectionObserver" in window) {
+    const introIo = new IntersectionObserver((ents) => {
+      ents.forEach((en) => { if (en.isIntersecting) { introIo.disconnect(); runIntro(); } });
+    }, { threshold: 0.35 });
+    introIo.observe(heroEl);
+  } else {
+    runIntro();
+  }
 })();
 
 /* ---- Scroll reveals ---- */
@@ -182,11 +193,19 @@ document.querySelectorAll(".reveal, .stagger").forEach((el) => io.observe(el));
 (function bgScroll() {
   const bd = document.getElementById("backdrop");
   if (!bd) return;
+  // the nav is held offscreen behind the cover and fades in once you scroll into the site
+  const nav = document.querySelector(".nav");
+  const hasCover = !!document.getElementById("cover");
+  if (nav && hasCover) nav.classList.add("nav--intro");
   let raf = 0;
   function update() {
     raf = 0;
-    const p = Math.min(1, window.scrollY / (window.innerHeight * 0.85));
+    const vh = window.innerHeight;
+    // with a cover screen, the prism starts fading only after the first viewport
+    const base = hasCover ? vh : 0;
+    const p = Math.min(1, Math.max(0, (window.scrollY - base) / (vh * 0.85)));
     bd.style.opacity = p.toFixed(3);
+    if (nav && hasCover) nav.classList.toggle("nav--intro", window.scrollY < vh * 0.6);
   }
   window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive: true });
   update();
