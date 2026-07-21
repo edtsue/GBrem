@@ -154,12 +154,15 @@ document.addEventListener("keydown", (e) => {
       await wait(speed);
     }
   }
+  let resolveTitle;
+  const titleLanded = new Promise((r) => { resolveTitle = r; });
   const runIntro = () => (async () => {
     await wait(250);                       // short beat, then it types
     await typeInto(l1, "AS SEEN", 90);
     l1.innerHTML = "AS SEEN";              // drop caret from line 1
     await wait(550);                       // ...beat...
     await typeInto(l2, "IN SCENES.", 90);  // caret keeps blinking at the end
+    resolveTitle();                        // title has landed — releases the scroll hold
     show(heroVid);                         // the scene fades up behind the name
     await wait(900);                       // ...beat...
     show(tagL1);                           // "Google's first AI laptop deserves"
@@ -169,18 +172,45 @@ document.addEventListener("keydown", (e) => {
     show(ledeEl);                          // then the body copy lands last
   })();
 
-  // hold the intro until the hero scrolls into view (behind the cover screen)
+  let introStarted = false;
+  const startIntro = () => { if (introStarted) return; introStarted = true; runIntro(); };
+
   const heroEl = document.getElementById("top");
-  if (heroEl && "IntersectionObserver" in window) {
-    // fire once the hero is meaningfully in view — not at load (it sits below
-    // the cover screen), not so late the empty title flashes on a fast scroll
-    const introIo = new IntersectionObserver((ents) => {
-      ents.forEach((en) => { if (en.isIntersecting) { introIo.disconnect(); runIntro(); } });
-    }, { threshold: 0.2 });
-    introIo.observe(heroEl);
-  } else {
-    runIntro();
-  }
+  if (!heroEl || !("IntersectionObserver" in window)) { startIntro(); return; }
+
+  // start typing as the hero scrolls into view (it sits below the cover screen)
+  const introIo = new IntersectionObserver((ents) => {
+    ents.forEach((en) => { if (en.isIntersecting) { introIo.disconnect(); startIntro(); } });
+  }, { threshold: 0.2 });
+  introIo.observe(heroEl);
+
+  // ...and briefly lock the scroll so the client can't blow past the title
+  // reveal — released the moment the title lands (or a safety timeout)
+  const keys = new Set(["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " ", "Spacebar"]);
+  const block = (e) => e.preventDefault();
+  const blockKey = (e) => { if (keys.has(e.key)) e.preventDefault(); };
+  const lock = () => {
+    window.addEventListener("wheel", block, { passive: false });
+    window.addEventListener("touchmove", block, { passive: false });
+    window.addEventListener("keydown", blockKey, { passive: false });
+  };
+  const unlock = () => {
+    window.removeEventListener("wheel", block, { passive: false });
+    window.removeEventListener("touchmove", block, { passive: false });
+    window.removeEventListener("keydown", blockKey, { passive: false });
+  };
+  let held = false;
+  const holdIo = new IntersectionObserver((ents) => {
+    ents.forEach((en) => {
+      if (en.isIntersecting && !held) {
+        held = true; holdIo.disconnect();
+        startIntro();
+        lock();
+        Promise.race([titleLanded, wait(4000)]).then(unlock);
+      }
+    });
+  }, { threshold: 0.6 });
+  holdIo.observe(heroEl);
 })();
 
 /* ---- Scroll reveals ---- */
