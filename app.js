@@ -155,7 +155,7 @@ document.addEventListener("keydown", (e) => {
     }
   }
   const runIntro = () => (async () => {
-    await wait(700);                       // ...pitch black, hold...
+    await wait(250);                       // short beat, then it types
     await typeInto(l1, "AS SEEN", 90);
     l1.innerHTML = "AS SEEN";              // drop caret from line 1
     await wait(550);                       // ...beat...
@@ -172,9 +172,11 @@ document.addEventListener("keydown", (e) => {
   // hold the intro until the hero scrolls into view (behind the cover screen)
   const heroEl = document.getElementById("top");
   if (heroEl && "IntersectionObserver" in window) {
+    // fire once the hero is meaningfully in view — not at load (it sits below
+    // the cover screen), not so late the empty title flashes on a fast scroll
     const introIo = new IntersectionObserver((ents) => {
       ents.forEach((en) => { if (en.isIntersecting) { introIo.disconnect(); runIntro(); } });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.2 });
     introIo.observe(heroEl);
   } else {
     runIntro();
