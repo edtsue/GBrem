@@ -216,6 +216,15 @@ strong{color:#fff;font-weight:600}
 .card__tag-ico{margin-right:7px;font-weight:400;-webkit-text-fill-color:initial}
 .card h3{font-family:Manrope;font-weight:700;font-size:22px;letter-spacing:-.02em;margin-bottom:10px;color:#fff}
 .card p{color:var(--ink2);font-size:17.5px;line-height:1.6}
+/* channel pills — full-width strip under the solution card, each its own colour */
+.split .card .pills{grid-column:1/-1;grid-row:3;margin-top:22px}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{display:inline-flex;align-items:center;font-family:Manrope;font-weight:600;font-size:13px;letter-spacing:.01em;
+  padding:7px 15px;border-radius:999px;border:1px solid transparent;background:rgba(255,255,255,.02)}
+.pill--blue{color:#a6c8ff;border-color:rgba(66,133,244,.5);background:rgba(66,133,244,.12)}
+.pill--green{color:#7ee0a0;border-color:rgba(52,168,83,.5);background:rgba(52,168,83,.12)}
+.pill--amber{color:#fbd07a;border-color:rgba(245,158,11,.5);background:rgba(245,158,11,.12)}
+.pill--pink{color:#f9a8d4;border-color:rgba(236,72,153,.5);background:rgba(236,72,153,.12)}
 
 /* product features */
 .product__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px}
