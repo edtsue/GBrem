@@ -42,6 +42,7 @@ strong{color:#fff;font-weight:600}
 
 /* ---- shared ---- */
 .grad{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad--rainbow{background:var(--glow);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
 .shimmer{background-size:220% 100%;animation:shimmer 7s linear infinite}
 /* text wearing the Glowbar's rainbow — same gradient, same travel as the lid light */
 .grad-glow{background:var(--glow);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;
