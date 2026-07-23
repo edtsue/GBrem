@@ -202,7 +202,7 @@ strong{color:#fff;font-weight:600}
 .eyebrow__n{font-family:Manrope;font-weight:800;font-size:15px;letter-spacing:.06em;background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
 .eyebrow__sweep{height:2px;width:56px;border-radius:2px;background:var(--iris);background-size:200% 100%;animation:shimmer 4s linear infinite}
 .eyebrow__t{font-family:Manrope;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
-.sec__h2{font-family:Manrope;font-weight:800;font-size:clamp(32px,4.6vw,56px);line-height:1.05;letter-spacing:-.03em;max-width:18ch;
+.sec__h2{font-family:Manrope;font-weight:800;font-size:clamp(32px,4.6vw,56px);line-height:1.05;letter-spacing:-.03em;max-width:18ch;padding-bottom:.12em;
   background:linear-gradient(180deg,#ffffff,#c6cad6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sec__h2 .grad{background:var(--iris);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sec__h2--oneline{max-width:none;white-space:nowrap}
