@@ -275,77 +275,43 @@ if (spot && window.matchMedia("(pointer:fine)").matches) {
   });
 }
 
-/* ---- If a real demo video exists, use it; else keep the empty state ---- */
-(function initDemo() {
-  const vid = document.getElementById("demoVid");
-  const empty = document.getElementById("demoEmpty");
-  if (!vid) return;
-  fetch("assets/demo.mp4", { method: "HEAD" }).then((r) => {
-    if (r.ok) {
-      const s = document.createElement("source");
-      s.src = "assets/demo.mp4"; s.type = "video/mp4";
-      vid.appendChild(s); vid.load();
-      if (empty) empty.style.display = "none";
-    }
-  }).catch(() => {});
-})();
+/* ---- Modal accessibility: move focus into the panel on open, trap Tab while
+   open, and return focus to the trigger on close. Driven off the `hidden`
+   attribute so it works no matter which button opened the modal. ---- */
+(function modalA11y() {
+  const modals = ["deckModal", "productModal", "audienceModal", "sheetModal"]
+    .map((id) => document.getElementById(id)).filter(Boolean);
+  const SELECTOR = 'a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  const panelOf = (m) => m.querySelector(".pmodal__panel,.deck-modal__panel");
+  const visibleFocusables = (panel) =>
+    [...panel.querySelectorAll(SELECTOR)].filter((el) => el.offsetParent !== null);
+  let returnFocus = null;
 
-/* ---- Placement Finder (live AI) ---- */
-const SHOWS = ["All American", "The Bear", "Industry", "Only Murders in the Building", "Abbott Elementary", "Severance"];
-const MOMENTS = [
-  "the late-night study grind",
-  "the plan that comes together",
-  "the writers'-room breakthrough",
-  "the pitch that lands",
-  "the deal that closes",
-  "the idea at 2am",
-];
-const selShow = document.getElementById("finderShow");
-const selMoment = document.getElementById("finderMoment");
-const finderGo = document.getElementById("finderGo");
-const finderOut = document.getElementById("finderOut");
-if (selShow && selMoment) {
-  SHOWS.forEach((s) => selShow.add(new Option(s, s)));
-  MOMENTS.forEach((m) => selMoment.add(new Option(m, m)));
-}
-function skeleton() {
-  finderOut.hidden = false;
-  finderOut.classList.add("loading");
-  finderOut.innerHTML = `<div class="fo"><div class="skeleton" style="width:40%"></div><div class="skeleton"></div><div class="skeleton" style="width:80%"></div></div>`.repeat(2);
-}
-function renderConcept(c, note) {
-  finderOut.classList.remove("loading");
-  const rows = [
-    ["Scene", c.scene],
-    ["Why it fits — the speed of thought", c.whyItFits],
-    ["The Googlebook's role", c.googlebookRole],
-    ["Render note", c.renderNote],
-  ];
-  finderOut.innerHTML =
-    rows.map(([k, v]) => `<div class="fo"><div class="fo__k">${k}</div><div class="fo__v">${(v || "").replace(/</g, "&lt;")}</div></div>`).join("") +
-    (note ? `<div class="fo fo--note">${note}</div>` : "");
-}
-if (finderGo) {
-  finderGo.addEventListener("click", async () => {
-    skeleton();
-    try {
-      const res = await fetch("/api/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ show: selShow.value, moment: selMoment.value }),
-      });
-      const data = await res.json();
-      renderConcept(data.concept || data, data.sample ? "Sample concept — add a GEMINI_KEY to generate live." : "");
-    } catch (err) {
-      renderConcept(
-        {
-          scene: `A quiet corner during ${selMoment.value} on ${selShow.value}.`,
-          whyItFits: "This is a speed-of-thought beat — exactly where a thinking machine belongs.",
-          googlebookRole: "The Googlebook is open, mid-thought, helping the character move fast.",
-          renderNote: "Place on the desk, screen catching key light; keep it native to the scene.",
-        },
-        "Offline sample — the live generator needs the API to be reachable."
-      );
-    }
+  modals.forEach((m) => {
+    new MutationObserver(() => {
+      const panel = panelOf(m);
+      if (!m.hidden) {
+        returnFocus = document.activeElement;
+        const first = panel && panel.querySelector(SELECTOR);
+        if (first) first.focus();
+        else if (panel) { panel.tabIndex = -1; panel.focus(); }
+      } else if (returnFocus) {
+        if (typeof returnFocus.focus === "function") returnFocus.focus();
+        returnFocus = null;
+      }
+    }).observe(m, { attributes: true, attributeFilter: ["hidden"] });
   });
-}
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const open = modals.find((m) => !m.hidden);
+    if (!open) return;
+    const panel = panelOf(open);
+    const f = panel && visibleFocusables(panel);
+    if (!f || !f.length) { e.preventDefault(); return; }
+    const first = f[0], last = f[f.length - 1];
+    if (!panel.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+})();
