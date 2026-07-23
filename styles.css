@@ -101,6 +101,7 @@ strong{color:#fff;font-weight:600}
 .cover__in{display:flex;flex-direction:column;align-items:center}
 .cover__img{display:block;width:min(560px,74vw);height:auto}
 .cover__cap{margin-top:14px;max-width:none;font-family:Inter,system-ui,sans-serif;font-weight:600;font-size:clamp(13px,2.5vw,18px);line-height:1.35;letter-spacing:-.01em;color:#f4f5f8}
+.cover__credit{margin-top:22px;font-family:Inter,system-ui,sans-serif;font-weight:500;font-size:clamp(11px,1.8vw,13px);letter-spacing:.04em;color:#8a8f99}
 .cover__cue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;
   color:var(--ink3);font-family:Manrope;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite}
 .cover__cue i{font-style:normal;font-size:16px}
