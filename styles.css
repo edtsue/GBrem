@@ -298,6 +298,8 @@ strong{color:#fff;font-weight:600}
   color:var(--ink);transition:border-color .2s,background .2s,transform .2s}
 .showlogo:hover{border-color:var(--line2);background:rgba(255,255,255,.045);transform:translateY(-2px)}
 .showlogo img{max-width:86%;max-height:54px;width:auto;height:auto;object-fit:contain;display:block}
+.showlogo__min{margin-top:10px;font-family:Inter,system-ui,sans-serif;font-size:12px;letter-spacing:.02em;color:var(--ink3);white-space:nowrap}
+.showlogo__min b{color:#f4f5f8;font-weight:700}
 @media (max-width:720px){
   .shows__grid{grid-template-columns:repeat(2,1fr)}
 }
