@@ -8,6 +8,7 @@
 const DECKS = [
   { label: "REMBRAND CREDS", id: "1TCCxYOP9qCrfejd5EKVk_31X2739PO-n" },
   { label: "GOOGLEBOOK RFP", id: "1-C-ai2sYnoFIYeLc_V5bytikwFm8JA7bB60juoTF0-k" },
+  { label: "PROPOSAL", id: "1t1suCceqFB9JNarRPxVVOyHDHzaG5jolXkNA_EvOoXs" },
 ];
 const embedUrl = (id) => `https://docs.google.com/presentation/d/${id}/embed?start=false&loop=false&delayms=3000`;
 const editUrl = (id) => `https://docs.google.com/presentation/d/${id}/edit`;
